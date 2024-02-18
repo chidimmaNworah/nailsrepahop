@@ -1,0 +1,293 @@
+.infos {
+  color: #c4c4c4;
+  // background: #fff;
+
+  @media (max-width: 840px) {
+    padding-top: 1rem !important;
+  }
+  @media (max-width: 460px) {
+    // max-width: 340px;
+    width: 100%;
+  }
+  &__description {
+    background: $light-pink-color;
+    border-radius: 5px 0 0 5px;
+    padding: 5px 6px;
+    // opacity: 50%;
+    color: $dark-red-color;
+    &_text {
+      border-bottom: 1px solid $light-pink-color;
+      margin-bottom: 10px;
+      font-size: 14px;
+      padding-top: 3px;
+    }
+  }
+  &__brand {
+    margin-top: 1rem;
+    font-size: 12px;
+    font-weight: normal;
+    span {
+      :first-of-type {
+        color: #666;
+      }
+    }
+  }
+  &__sku {
+    font-size: 12px;
+    font-weight: normal;
+    span {
+      :first-of-type {
+        color: #666;
+      }
+    }
+  }
+  &__availability {
+    font-size: 12px;
+    font-weight: normal;
+    span {
+      :first-of-type {
+        color: #666;
+      }
+    }
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    color: #abaaaa;
+    margin-bottom: 8px;
+  }
+  &__price {
+    color: $light-pink-color;
+    display: flex;
+    align-items: center;
+    h3 {
+      font-weight: normal;
+      font-size: 16px;
+      padding-left: 5px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        &:first-of-type {
+          text-decoration: line-through;
+        }
+        &:last-of-type {
+          color: $success-color;
+        }
+      }
+    }
+  }
+  &__shipping {
+    display: block;
+    color: $light-pink-color;
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  &__sizes {
+    margin-top: 1rem;
+    h4 {
+      font-size: 10px;
+      // text-align: end;
+      // @media (max-width: 460px) {
+      //   text-align: start;
+      // }
+    }
+    &_wrap {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      // justify-content: flex-end;
+      // @media (max-width: 460px) {
+      //   justify-content: start;
+      // }
+    }
+    &_size {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid $light-pink-color;
+      cursor: pointer;
+      &:hover {
+        background-image: linear-gradient(
+          to top,
+          $dark-red-color 0%,
+          $orange-red 99%,
+          $light-pink-color 100%
+        );
+        border: none;
+      }
+    }
+  }
+  &__colors {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    // justify-content: flex-end;
+    // @media (max-width: 460px) {
+    //   justify-content: start;
+    // }
+    span {
+      display: grid;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      outline: 1px solid $light-pink-color;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      &:hover {
+        outline: 1px solid #666;
+        outline-offset: 2px;
+      }
+    }
+  }
+  &__qty {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    // justify-content: flex-end;
+    // @media (max-width: 460px) {
+    //   justify-content: start;
+    // }
+    button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      background: $light-pink-color;
+      color: $dark-red-color;
+      box-shadow: $shadow-1;
+      &:hover {
+        outline: 1px solid $light-pink-color;
+        outline-offset: 2px;
+        background: none;
+        color: $light-pink-color;
+      }
+      svg {
+        transform: scale(0.9);
+      }
+      span {
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  &__actions {
+    @media (min-width: 1160px) {
+      display: flex;
+      gap: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 60px;
+      color: #666;
+      font-weight: 600;
+      font-size: 17px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s;
+      svg {
+        width: 30px;
+        height: 30px;
+        transform: translateY(-3px);
+      }
+      &:first-of-type {
+        background-image: linear-gradient(
+          to top,
+          #f3e7e9 0%,
+          #e3eeff 99%,
+          #e3eeff 100%
+        );
+        &:hover {
+          color: $dark-red-color;
+          background-image: linear-gradient(
+            to top,
+            #e3eeff 0%,
+            #e3eeff 99%,
+            #f3e7e9 100%
+          );
+          transition: ease-in 0.3s;
+        }
+      }
+      &:last-of-type {
+        border: 1px solid #000;
+        background: #222;
+        color: #fff;
+        svg {
+          margin-top: 5px;
+        }
+        @media (min-width: 1160px) {
+          width: 300px;
+        }
+        &:hover {
+          background: transparent;
+          border: 1px solid #fff;
+          transition: all 0.5s;
+          // color: #333;
+        }
+      }
+    }
+  }
+  &__accordian {
+    // margin-top: 1rem;
+    // max-width: 400px;
+    &_grid {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-weight: normal;
+      span {
+        display: flex;
+        gap: 2px;
+        &:last-of-type {
+          width: 180px;
+        }
+        p {
+          text-transform: capitalize;
+        }
+      }
+    }
+    .accordian {
+      border: none;
+      font-weight: 700;
+      color: $light-pink-color;
+      &__summary {
+        background: transparent;
+        svg {
+          color: $light-pink-color;
+        }
+      }
+    }
+  }
+}
+.active_size {
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
+}
+.active_color {
+  outline: 1px solid #666;
+  outline-offset: 2px;
+}

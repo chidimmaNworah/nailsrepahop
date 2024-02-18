@@ -1,0 +1,147 @@
+.footer {
+  background: $brownish-red;
+  &__container {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+      "payment"
+      "links"
+      "newsletter"
+      "socials"
+      "copyright";
+    gap: 3rem;
+    padding: 1rem;
+    @media (min-width: 800px) {
+      grid-template-areas:
+        "links socials"
+        "links newsletter"
+        "copyright payment";
+    }
+    @media (min-width: 1200px) {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  img {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: 700;
+    color: $dark-red-color;
+  }
+  &__links {
+    grid-area: links;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    color: $dark-red-color;
+    ul {
+      padding: 5px;
+      b: {
+        text-transform: uppercase;
+        color: $dark-red-color;
+      }
+      li {
+        font-size: 12px;
+        a {
+          color: $light-pink-color;
+          line-height: 23px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  &__socials {
+    grid-area: socials;
+    section {
+      ul {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        li {
+          font-size: 2rem;
+          color: $light-pink-color;
+          &:hover {
+            color: $dark-red-color;
+          }
+        }
+      }
+    }
+  }
+  &__flex {
+    display: flex;
+    margin-top: 10px;
+  }
+  &__newsletter {
+    grid-area: newsletter;
+    input {
+      flex: 1;
+      height: 40px;
+      outline: none;
+      border: 1px solid $light-pink-color;
+      font-size: 14px;
+      padding-left: 10px;
+    }
+    button {
+      width: 160px;
+    }
+    p {
+      margin-top: 10px;
+      font-size: 12px;
+      color: $light-pink-color;
+      a {
+        color: $dark-red-color;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__payment {
+    grid-area: payment;
+  }
+  &__flexwrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1rem;
+    img {
+      width: 60px;
+      height: 36px;
+      object-fit: cover;
+    }
+  }
+  &__copyright {
+    grid-area: copyright;
+    section {
+      font-size: 12px;
+      color: $light-pink-color;
+      padding-bottom: 10px;
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      column-gap: 2rem;
+      li {
+        position: relative;
+        text-decoration: underline;
+        &::after {
+          content: "";
+          width: 1px;
+          height: 15px;
+          background: $light-pink-color;
+          right: -1rem;
+        }
+        &:last-of-type::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
