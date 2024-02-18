@@ -19,5 +19,6 @@ module.exports = {
       nocompatible: true,
       preferredStrategy: "pseudoelements",
     }),
+    require("@tailwindcss/forms"),
   ],
 };
