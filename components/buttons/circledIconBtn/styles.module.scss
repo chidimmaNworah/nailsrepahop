@@ -6,17 +6,17 @@
   height: 55px;
   border-radius: 55px;
   font-weight: 600;
-  color: #fff;
-  background: $dark-red-color;
+  color: $dark-red-color;
+  background: $light-pink-color;
   display: block;
   cursor: pointer;
   &:hover {
-    background: #fff;
-    border: 1px solid $dark-red-color;
-    color: $dark-red-color;
+    background: $dark-red-color;
+    border: 1px solid $light-pink-color;
+    color: $light-pink-color;
     .svg__wrap {
       svg {
-        fill: $dark-red-color;
+        fill: $light-pink-color;
       }
     }
   }
@@ -29,9 +29,9 @@
     position: absolute;
     top: 7.5px;
     right: 5px;
-    background: $grey-color;
+    background: $dark-red-color;
     svg {
-      fill: $dark-red-color;
+      fill: $light-pink-color;
     }
   }
 }

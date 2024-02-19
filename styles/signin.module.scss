@@ -32,33 +32,34 @@
     gap: 12px;
     // justify-content: space-between;
     min-width: 300px;
+    color: #b7b6b6;
     .back__svg {
       width: 50px;
       height: 50px;
-      border: 1px solid #66666657;
+      border: 1px solid #a79a9a57;
       border-radius: 50%;
       display: grid;
       place-items: center;
       cursor: pointer;
       &:hover {
-        border-color: $dark-red-color;
+        border-color: $light-pink-color;
         svg {
-          fill: $dark-red-color;
+          fill: $light-pink-color;
         }
       }
       svg {
         width: 20px;
         height: 20px;
-        fill: #222;
+        fill: $light-pink-color;
       }
     }
     span {
       font-weight: 600;
       font-size: 14px;
       a {
-        color: $dark-red-color;
+        color: $light-pink-color;
         cursor: pointer;
-        border-bottom: 1px solid $dark-red-color;
+        border-bottom: 1px solid $light-pink-color;
         padding-bottom: 3px;
       }
     }
@@ -70,6 +71,7 @@
       font-size: 40px;
       font-weight: 600;
       margin: 0;
+      color: $light-pink-color;
     }
     p {
       color: #96979b;

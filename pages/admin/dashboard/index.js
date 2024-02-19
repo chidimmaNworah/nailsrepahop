@@ -14,6 +14,7 @@ import { SiProducthunt } from "react-icons/si";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { BiSearchAlt } from "react-icons/bi";
 import Link from "next/link";
+import db from "@/utils/db";
 export default function dashboard({ users, orders, products }) {
   const { data: session } = useSession();
   const searchIcon = <BiSearchAlt />;
@@ -52,7 +53,7 @@ export default function dashboard({ users, orders, products }) {
               <TbUsers />
             </div>
             <div className={styles.card__infos}>
-              <h4>+{users.length}</h4>
+              <h4>+{users?.length}</h4>
               <span>Users</span>
             </div>
           </div>
@@ -154,7 +155,7 @@ export default function dashboard({ users, orders, products }) {
             </div>
             <table>
               <tbody>
-                {users.map((user) => (
+                {users?.map((user) => (
                   <tr>
                     <td className={styles.user}>
                       <div className={styles.user__img}>
@@ -177,7 +178,8 @@ export default function dashboard({ users, orders, products }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const users = await User.find().lean().maxTimeMS(30000);
+  db.connectDb();
+  const users = await User.find().lean();
   const orders = await Order.find()
     .populate({ path: "user", model: User })
     .lean();

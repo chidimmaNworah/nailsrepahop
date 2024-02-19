@@ -187,8 +187,8 @@ export default function create({ parents, categories }) {
         },
       });
       setLoading(false);
-      // toast.success(data.message);
-      // setProduct({});
+      toast.success(data.message);
+      setProduct({});
       router.push("/admin/dashboard/product/all");
     } catch (error) {
       setLoading(false);
@@ -197,7 +197,7 @@ export default function create({ parents, categories }) {
   };
   return (
     <Layout>
-      {loading && <DotLoader loading={loading} />}
+      {/* {loading && <DotLoader loading={loading} />} */}
       <div className={styles.header}>Create Product</div>
       <DialogModal />
       <Formik
