@@ -12,23 +12,30 @@
   font-weight: 600;
   cursor: pointer;
   border-radius: 5px;
-  color: #222;
+  color: $dark-red-color;
   margin-top: 10px;
-  transition: all 0.1s;
   background: $light-pink-color;
+  // :hover {
+  //   transition: all 0.1s;
+  //   background: transparent;
+  //   color: $light-pink-color;
+  //   border: 1px solid $light-pink-color;
+  // }
   &_primary {
     background: $dark-red-color;
     color: #fff;
   }
 }
 .header {
-  font-weight: 700;
-  font-size: 20px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  color: $orange-red;
+  font-size: 18px;
+  font-weight: 600;
+  word-spacing: 2px;
   .flex {
     display: flex;
     align-items: center;

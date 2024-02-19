@@ -113,14 +113,14 @@ export default function create({ parents, categories }) {
     getSubs();
   }, [product.category]);
 
-  // const handleChange = (e) => {
-  //   const { value, name } = e.target;
-  //   setProduct({ ...product, [name]: value });
-  // };
-
-  const handleChange = (name, value) => {
+  const handleChange = (e) => {
+    const { value, name } = e.target;
     setProduct({ ...product, [name]: value });
   };
+
+  // const handleChange = (name, value) => {
+  //   setProduct({ ...product, [name]: value });
+  // };
 
   const validate = Yup.object({
     name: Yup.string()

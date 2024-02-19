@@ -6,6 +6,12 @@
     background: $dark-red-color;
     color: #fff;
   }
+  .header {
+    color: $orange-red;
+    font-size: 18px;
+    font-weight: 600;
+    word-spacing: 2px;
+  }
 }
 .wheel {
   overflow: hidden;
