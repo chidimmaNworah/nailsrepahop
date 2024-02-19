@@ -74,34 +74,29 @@ export default function Home({ country, products, productsByCategory }) {
       <div className={styles.home}>
         <div className={styles.container}>
           <Main products={products} />
-          <motion.div
-            whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
-            transition={{ duration: 0.5 }}
-          >
-            <FlashDeals products={products} />
-          </motion.div>
+          <FlashDeals products={products} />
           <div className={styles.home__category}>
-            <motion.div
+            {/* <motion.div
               whileInView={{ x: [-100, -50, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
-            >
-              <NailArt
-                header="Nail & Accessories"
-                products={products}
-                background="#c9454b"
-              />
-            </motion.div>
+            > */}
+            <NailArt
+              header="Nail & Accessories"
+              products={products}
+              background="#c9454b"
+            />
+            {/* </motion.div> */}
             {/* {!isMedium && ( */}
-            <motion.div
+            {/* <motion.div
               whileInView={{ x: [100, 50, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
-            >
-              <ToolsAndEquipments
-                header="Tools & Equipments"
-                products={products}
-                background="#704271"
-              />
-            </motion.div>
+            > */}
+            <ToolsAndEquipments
+              header="Tools & Equipments"
+              products={products}
+              background="#704271"
+            />
+            {/* </motion.div> */}
             {/* )} */}
             {/* <Category
               header="Health & Treatment"
@@ -124,16 +119,16 @@ export default function Home({ country, products, productsByCategory }) {
             headers="Unique & Stylish"
             bg="#ca4987"
           /> */}
-          <motion.div
+          {/* <motion.div
             whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
             transition={{ duration: 0.5 }}
-          >
-            <ForCreators
-              products={products}
-              header="Unique & Stylish"
-              bg="#ca4987"
-            />{" "}
-          </motion.div>
+          > */}
+          <ForCreators
+            products={products}
+            header="Unique & Stylish"
+            bg="#ca4987"
+          />{" "}
+          {/* </motion.div> */}
           <div className={styles.products}>
             {products?.map((product) => (
               <ProductCard product={product} key={product._id} />

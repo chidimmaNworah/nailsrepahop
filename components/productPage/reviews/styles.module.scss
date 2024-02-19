@@ -316,9 +316,30 @@
     width: 100%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: flex-end;
     gap: 1rem;
     padding: 0 1rem 1rem 1rem;
     border-bottom: 1px solid #ccc;
+    position: relative;
+    z-index: 1000;
+    @media (max-width: 460px) {
+      display: grid;
+      grid-template-columns: 6fr 6fr;
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+      justify-items: stretch;
+      align-items: stretch;
+      ul {
+        li {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  @media (max-width: 460px) {
+    .select {
+      font-size: 10px;
+    }
   }
 }

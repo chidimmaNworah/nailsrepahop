@@ -36,7 +36,7 @@ export default function product({ product, related }) {
           </div>
           <div className={styles.product__main}>
             <motion.div
-              whileInView={{ x: [-100, -50, 0], opacity: [0, 0, 1] }}
+              whileInView={{ x: [-30, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
             >
               <MainSwiper
@@ -46,7 +46,7 @@ export default function product({ product, related }) {
               />
             </motion.div>
             <motion.div
-              whileInView={{ x: [100, 50, 0], opacity: [0, 0, 1] }}
+              whileInView={{ x: [30, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
             >
               <Infos product={product} setActiveImg={setActiveImg} />

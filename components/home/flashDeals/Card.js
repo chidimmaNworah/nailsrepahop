@@ -9,7 +9,7 @@ export default function FlashCard({ item }) {
       {item.subProducts.map((product, i) => (
         <div className={styles.card} key={i}>
           <div className={styles.card__img}>
-            <Link href={`/product/${item.slug}?style=${i}`}>
+            <Link href={`/product/${item.slug}?style=${0}&size=${0}`}>
               <img src={product.images[i].url} alt="" />
             </Link>
             <div className={styles.flash}>

@@ -1,5 +1,7 @@
 import styles from "./styles.module.scss";
 import { MdFlashOn } from "react-icons/md";
+import { motion } from "framer-motion";
+
 import Countdown from "@/components/countdown";
 import { useRef, useState } from "react";
 // Import Swiper React components
@@ -17,13 +19,19 @@ import Link from "next/link";
 export default function FlashDeals({ products }) {
   return (
     <div className={styles.flashDeals}>
-      <div className={styles.flashDeals__header}>
-        <h1 className="flex">
-          FLASH SALE
-          <MdFlashOn />
-        </h1>
-        <Countdown date={new Date(2023, 11, 12, 25)} />
-      </div>
+      <motion.div
+        whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className={styles.flashDeals__header}>
+          <h1 className="flex">
+            FLASH SALE
+            <MdFlashOn />
+          </h1>
+          <Countdown date={new Date(2023, 11, 12, 25)} />
+        </div>
+      </motion.div>
+
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -60,46 +68,56 @@ export default function FlashDeals({ products }) {
                   {/* {item.subProductss.map((product, i) => ( */}
                   <div className={styles.card} key={i}>
                     <div className={styles.card__img}>
-                      <Link href={`/product/${product.slug}?style=${0}`}>
-                        <img
-                          src={product.subProducts[0].images[0].url}
-                          alt=""
-                        />
-                      </Link>
+                      <motion.div whileHover={{ scale: 1.2 }}>
+                        <Link
+                          href={`/product/${product.slug}?style=${0}&size=${0}`}
+                        >
+                          <img
+                            src={product.subProducts[0].images[0].url}
+                            alt=""
+                          />
+                        </Link>
+                      </motion.div>
                       <div className={styles.flash}>
                         <MdFlashOn />
                         <span>-{product.subProducts[0].discount}%</span>
                       </div>
                     </div>
-                    <div className={styles.card__price}>
-                      <span>
-                        ₦
-                        {(
-                          product.subProducts[0].sizes[0].price -
-                          product.subProducts[0].sizes[0].price /
-                            product.subProducts[0].discount
-                        ).toFixed(2)}
-                      </span>
-                      <span>
-                        -₦
-                        {(
-                          product.subProducts[0].sizes[0].price -
-                          (product.subProducts[0].sizes[0].price -
+                    <motion.div
+                      whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <div className={styles.card__price}>
+                        <span>
+                          ₦
+                          {(
+                            product.subProducts[0].sizes[0].price -
                             product.subProducts[0].sizes[0].price /
-                              product.subProducts[0].discount)
-                        ).toFixed(2)}
-                      </span>
-                    </div>
-                    <div className={styles.card__bar}>
-                      <div
-                        className={styles.card__bar_inner}
-                        style={{ width: "75%" }}
-                      ></div>
-                    </div>
-                    <div className={styles.card__percentage}>
-                      {product.subProducts[0].sold}%
-                    </div>
+                              product.subProducts[0].discount
+                          ).toFixed(2)}
+                        </span>
+                        <span>
+                          -₦
+                          {(
+                            product.subProducts[0].sizes[0].price -
+                            (product.subProducts[0].sizes[0].price -
+                              product.subProducts[0].sizes[0].price /
+                                product.subProducts[0].discount)
+                          ).toFixed(2)}
+                        </span>
+                      </div>
+                      <div className={styles.card__bar}>
+                        <div
+                          className={styles.card__bar_inner}
+                          style={{ width: `${product.subProducts[0].sold}%` }}
+                        ></div>
+                      </div>
+                      <div className={styles.card__percentage}>
+                        {product.subProducts[0].sold}% Sold
+                      </div>
+                    </motion.div>
                   </div>
+
                   {/* ))} */}
                 </SwiperSlide>
               )

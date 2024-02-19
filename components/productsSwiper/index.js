@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
+import Link from "next/link";
 export default function ProductsSwiper({ header, products, bg }) {
   // console.log(products);
   return (
@@ -44,7 +45,12 @@ export default function ProductsSwiper({ header, products, bg }) {
           <SwiperSlide>
             <div className={styles.product}>
               <div className={styles.product__img}>
-                <img src={product?.subProducts?.[i]?.images?.[0]?.url} alt="" />
+                <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
+                  <img
+                    src={product?.subProducts?.[i]?.images?.[0]?.url}
+                    alt=""
+                  />
+                </Link>
               </div>
               <div className={styles.product__infos}>
                 <h1>

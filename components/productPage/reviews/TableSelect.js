@@ -5,7 +5,7 @@ export default function TableSelect({ property, text, data, handleChange }) {
   const [visible, setVisible] = useState(false);
   return (
     <div className={styles.select}>
-      {text}:
+      Select {text}:
       <div
         className={styles.select__header}
         onMouseOver={() => setVisible(true)}

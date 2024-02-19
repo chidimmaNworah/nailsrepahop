@@ -45,7 +45,7 @@ export default function ForEntreprenuers({ header, products, bg }) {
           categoryOptions.includes(product.category.name) ? (
             <SwiperSlide key={i}>
               <div className={styles.product}>
-                <Link href={`/product/${product.slug}?style=${i}`}>
+                <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
                   <div className={styles.product__img}>
                     <img src={product.subProducts[0].images[0].url} alt="" />
                   </div>

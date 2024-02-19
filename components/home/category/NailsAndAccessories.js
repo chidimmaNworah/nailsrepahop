@@ -21,7 +21,9 @@ export default function NailArt({ header, products, background }) {
             return (
               product.category.name === "Nail Art" && (
                 <div className={styles.product} key={product._id}>
-                  <img src={product.subProducts[0].images[0].url} alt="" />
+                  <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
+                    <img src={product.subProducts[0].images[0].url} alt="" />
+                  </Link>
                 </div>
               )
             );

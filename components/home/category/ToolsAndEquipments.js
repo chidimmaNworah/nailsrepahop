@@ -18,7 +18,9 @@ export default function ToolsAndEquipments({ header, products, background }) {
           (product, i) =>
             product.category.name === "Tools & Equipments" && (
               <div className={styles.product}>
-                <img src={product.subProducts[0].images[0].url} alt="" />
+                <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
+                  <img src={product.subProducts[0].images[0].url} alt="" />
+                </Link>{" "}
               </div>
             )
         )}
