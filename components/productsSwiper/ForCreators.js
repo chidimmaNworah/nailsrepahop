@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 export default function ForCreators({ header, products, bg }) {
-  const categoryOptions = ["Treatments", "Nail Arts", "Fashion", "Tools"];
+  const categoryOptions = ["Treatments", "Nail Arts"];
 
   return (
     <div className={styles.wrapper}>

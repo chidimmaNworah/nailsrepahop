@@ -6,6 +6,7 @@ export default function NailArt({ header, products, background }) {
   console.log("products: ", products);
   const isMedium = useMediaQuery({ query: "(max-width:1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
+  const categoryOptions = ["Nail Art", "Fashion", "Acessories"];
   return (
     <div className={styles.category} style={{ background: `${background}` }}>
       <div className={styles.category__header}>
@@ -18,14 +19,14 @@ export default function NailArt({ header, products, background }) {
         {products
           .slice(0, isMobile ? 6 : isMedium ? 4 : 6)
           .map((product, i) => {
-            return (
-              product.category.name === "Nail Art" && (
-                <div className={styles.product} key={product._id}>
-                  <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
-                    <img src={product.subProducts[0].images[0].url} alt="" />
-                  </Link>
-                </div>
-              )
+            return categoryOptions.includes(product.category.name) ? (
+              <div className={styles.product} key={product._id}>
+                <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
+                  <img src={product.subProducts[0].images[0].url} alt="" />
+                </Link>
+              </div>
+            ) : (
+              ""
             );
           })}
       </div>

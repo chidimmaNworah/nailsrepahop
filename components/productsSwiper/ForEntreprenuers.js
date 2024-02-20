@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 export default function ForEntreprenuers({ header, products, bg }) {
-  const categoryOptions = ["Combo", "Tools"];
+  const categoryOptions = ["Fashion", "Accessories"];
 
   return (
     <div className={styles.wrapper}>

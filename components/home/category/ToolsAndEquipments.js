@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function ToolsAndEquipments({ header, products, background }) {
   const isMedium = useMediaQuery({ query: "(max-width:1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
+  const categoryOptions = ["Combo", "Tools"];
   return (
     <div className={styles.category} style={{ background: `${background}` }}>
       <div className={styles.category__header}>
@@ -14,15 +15,17 @@ export default function ToolsAndEquipments({ header, products, background }) {
         </Link>
       </div>
       <div className={styles.category__products}>
-        {products.slice(0, isMobile ? 6 : isMedium ? 4 : 6).map(
-          (product, i) =>
-            product.category.name === "Tools & Equipments" && (
-              <div className={styles.product}>
-                <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
-                  <img src={product.subProducts[0].images[0].url} alt="" />
-                </Link>{" "}
-              </div>
-            )
+        {products.slice(0, isMobile ? 6 : isMedium ? 4 : 6).map((product, i) =>
+          // product.category.name === "Tools & Equipments" && (
+          categoryOptions.includes(product.category.name) ? (
+            <div className={styles.product}>
+              <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
+                <img src={product.subProducts[0].images[0].url} alt="" />
+              </Link>{" "}
+            </div>
+          ) : (
+            ""
+          )
         )}
       </div>
     </div>

@@ -73,6 +73,7 @@ export default function Images({
         reader.onload = (e) => {
           setImages((images) => [...images, e.target.result]);
         };
+        console.log(reader);
       }
     });
   };
