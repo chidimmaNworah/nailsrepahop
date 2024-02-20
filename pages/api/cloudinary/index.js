@@ -43,7 +43,7 @@ router.post(async (req, res) => {
 
 router.delete(async (req, res) => {
   let image_id = req.body.public_id;
-  cloudinary.v2.uploader.destroy(image_id, (err, res) => {
+  cloudinary.uploader.destroy(image_id, (err, res) => {
     if (err) return res.status(400).json({ success: false, err });
     res.json({ success: true });
   });
@@ -51,11 +51,12 @@ router.delete(async (req, res) => {
 
 const uploadToCloudinaryHandler = async (file, path) => {
   return new Promise((resolve) => {
-    cloudinary.v2.uploader.upload(
+    cloudinary.uploader.upload(
       // fileData,
       file.tempFilePath,
       {
         folder: path,
+        invalidate: true,
       },
       // (err, res) => {
       //   if (err) {
@@ -74,7 +75,7 @@ const uploadToCloudinaryHandler = async (file, path) => {
         }
         resolve({
           url: res.secure_url,
-          public_url: res.public_id,
+          // public_url: res.public_id,
         });
       }
     );
