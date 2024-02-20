@@ -106,6 +106,7 @@ export default function Images({
         multiple
         accept="image/jpeg,image/png,image/webp"
         onChange={handleImages}
+        // {...field}
       />
       <div className={styles.images__main}>
         <div

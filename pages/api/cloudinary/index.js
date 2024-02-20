@@ -14,6 +14,7 @@ const router = createRouter()
   .use(
     fileUpload({
       useTempFiles: true,
+      tempFileDir: "/tmp/",
     })
   )
   .use(imgMiddleware);
@@ -26,13 +27,11 @@ router.post(async (req, res) => {
   try {
     const { path } = req.body || {};
     let files = Object.values(req.files).flat();
-    console.log(files);
     let images = [];
     for (const file of files) {
-      // console.log(file);
       const img = await uploadToCloudinaryHandler(file, path);
       images.push(img);
-      // removeTmp(file.tempFilePath);
+      removeTmp(file.tempFilePath);
     }
     res.json(images);
   } catch (error) {
@@ -43,7 +42,7 @@ router.post(async (req, res) => {
 
 router.delete(async (req, res) => {
   let image_id = req.body.public_id;
-  cloudinary.uploader.destroy(image_id, (err, res) => {
+  cloudinary.v2.uploader.destroy(image_id, (err, res) => {
     if (err) return res.status(400).json({ success: false, err });
     res.json({ success: true });
   });
@@ -51,31 +50,20 @@ router.delete(async (req, res) => {
 
 const uploadToCloudinaryHandler = async (file, path) => {
   return new Promise((resolve) => {
-    cloudinary.uploader.upload(
-      // fileData,
+    cloudinary.v2.uploader.upload(
       file.tempFilePath,
       {
         folder: path,
-        invalidate: true,
       },
-      // (err, res) => {
-      //   if (err) {
-      //     removeTmp(file.tempFilePath);
-      //     console.log(err);
-      //     return res.status(400).json({ message: "Upload image failed." });
-      //   }
-      //   resolve({
-      //     url: res.secure_url,
-      //     public_url: res.public_id,
-      //   });
       (err, res) => {
         if (err) {
+          removeTmp(file.tempFilePath);
           console.log(err);
           return res.status(400).json({ message: "Upload image failed." });
         }
         resolve({
           url: res.secure_url,
-          // public_url: res.public_id,
+          public_url: res.public_id,
         });
       }
     );

@@ -140,14 +140,12 @@ export default function create({ parents, categories }) {
     description: Yup.string().required("Please add a description"),
   });
   const createProduct = async () => {
-    setLoading(true);
     let test = validateCreateProduct(product, images);
     if (test == "valid") {
       createProductHandler();
-      setLoading(false);
-      toast.success("uploaded sucessfully");
-      setProduct({});
-      router.push("/admin/dashboard/product/all");
+      // setLoading(false);
+      // toast.success("uploaded sucessfully");
+      // setProduct({});
     } else {
       dispatch(
         showDialog({
@@ -157,94 +155,97 @@ export default function create({ parents, categories }) {
       );
     }
   };
-  // let uploaded_images = [];
-  // let style_img = "";
-  // const createProductHandler = async () => {
-  //   setLoading(true);
-  //   if (images) {
-  //     let temp = images.map((img) => {
-  //       return dataURItoBlob(img);
-  //     });
-  //     const path = "product images";
-  //     let formData = new FormData();
-  //     formData.append("path", path);
-  //     temp.forEach((image) => {
-  //       formData.append("file", image);
-  //     });
-  //     uploaded_images = await uploadImages(formData);
-  //   }
-  //   if (product.color.image) {
-  //     let temp = dataURItoBlob(product.color.image);
-  //     let path = "product style images";
-  //     let formData = new FormData();
-  //     formData.append("path", path);
-  //     formData.append("file", temp);
-  //     let cloudinary_style_img = await uploadImages(formData);
-  //     style_img = cloudinary_style_img[0].url;
-  //   }
-  //   try {
-  //     const { data } = await axios.post("/api/admin/product", {
-  //       ...product,
-  //       images: uploaded_images,
-  //       color: {
-  //         image: style_img,
-  //         color: product.color.color,
-  //       },
-  //     });
-  //     setLoading(false);
-  //     toast.success(data.message);
-  //     setProduct({});
-  //     router.push("/admin/dashboard/product/all");
-  //   } catch (error) {
-  //     setLoading(false);
-  //     toast.error(error.response.data.message);
-  //   }
-  // };
-
+  let uploaded_images = [];
+  let style_img = "";
   const createProductHandler = async () => {
-    try {
-      let uploadedImages = [];
-      let styleImg = "";
+    setLoading(true);
+    if (images) {
+      let temp = images.map((img) => {
+        return dataURItoBlob(img);
+      });
+      const path = "product images";
+      let formData = new FormData();
+      formData.append("path", path);
+      temp.forEach((image) => {
+        formData.append("file", image);
+      });
+      uploaded_images = await uploadImages(formData);
+    }
+    if (product.color.image) {
+      let temp = dataURItoBlob(product.color.image);
       let path = "product images";
-
-      // Upload carousel images
-      if (images) {
-        const formData = new FormData();
-        formData.append("path", path);
-
-        images.forEach((img) => {
-          const blob = dataURItoBlob(img);
-          formData.append("file", blob);
-        });
-
-        uploadedImages = await uploadImages(formData);
-      }
-
-      // Upload style image
-      if (product.color.image) {
-        const blob = dataURItoBlob(product.color.image);
-        const formData = new FormData();
-        formData.append("path", path);
-        formData.append("file", blob);
-
-        const cloudinaryStyleImg = await uploadImages(formData);
-        styleImg = cloudinaryStyleImg[0].url;
-      }
-
-      // Send product data to backend
+      let formData = new FormData();
+      formData.append("path", path);
+      formData.append("file", temp);
+      let cloudinary_style_img = await uploadImages(formData);
+      style_img = cloudinary_style_img[0].url;
+    }
+    try {
+      // setLoading(true);
       const { data } = await axios.post("/api/admin/product", {
         ...product,
-        images: uploadedImages,
+        images: uploaded_images,
         color: {
-          image: styleImg,
+          image: style_img,
           color: product.color.color,
         },
       });
+      setLoading(false);
+      toast.success(data.message);
+      // setProduct({});
+      // router.push("/admin/dashboard/product/all");
+      router.push("/admin/dashboard/product/all");
     } catch (error) {
       setLoading(false);
-      toast.error("An error has occured", error);
+      toast.error(error);
     }
   };
+
+  // const createProductHandler = async () => {
+  //   try {
+  //     let uploadedImages = [];
+  //     let styleImg = "";
+  //     let path = "product images";
+
+  //     // Upload carousel images
+  //     if (images) {
+  //       const formData = new FormData();
+  //       formData.append("path", path);
+
+  //       images.forEach((img) => {
+  //         const blob = dataURItoBlob(img);
+  //         formData.append("file", blob);
+  //       });
+
+  //       uploadedImages = await uploadImages(formData);
+  //     }
+
+  //     // Upload style image
+  //     if (product.color.image) {
+  //       const blob = dataURItoBlob(product.color.image);
+  //       const formData = new FormData();
+  //       formData.append("path", path);
+  //       formData.append("file", blob);
+
+  //       const cloudinaryStyleImg = await uploadImages(formData);
+  //       styleImg = cloudinaryStyleImg[0].url;
+  //     }
+
+  //     // Send product data to backend
+  //     const { data } = await axios.post("/api/admin/product", {
+  //       ...product,
+  //       images: uploadedImages,
+  //       color: {
+  //         image: styleImg,
+  //         color: product.color.color,
+  //       },
+  //     });
+  //     toast.success(data.message);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     toast.error("An error has occured", error);
+  //   }
+  // };
 
   return (
     <Layout>
