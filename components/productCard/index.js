@@ -56,8 +56,8 @@ export default function ProductCard({ product }) {
           </h1>
           <span>
             {prices.length === 1
-              ? `NGN${prices[0]}₦`
-              : `NGN${prices[0]}-${prices[prices.length - 1]}₦`}
+              ? `₦${prices[0]}`
+              : `₦${prices[0]}-${prices[prices.length - 1]}`}
           </span>
           <div className={styles.product__colors}>
             {styless &&

@@ -137,16 +137,10 @@ export default function AddReview({ product, setReviews }) {
             value={rating}
             onChange={(e) => setRating(e.target.value)}
             precision={1}
-            style={{ color: "#5a141d", fontSize: "3rem" }}
+            style={{ color: "#5a141d", fontSize: "3rem", width: "15rem" }}
           />
         </div>
-        <Rating
-          name="half-rating"
-          defaultValue={product.rating}
-          precision={1}
-          readOnly
-          style={{ color: "#5a141d" }}
-        />
+
         <button
           className={`${styles.login_btn} ${loading ? styles.disabled : ""}`}
           onClick={() => handleSubmit()}

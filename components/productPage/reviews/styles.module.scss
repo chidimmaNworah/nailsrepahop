@@ -108,6 +108,7 @@
           //     font-size: 10px;
           //   }
           // }
+          // width: 100%;
           .select {
             p {
               display: none;
@@ -116,20 +117,7 @@
         }
       }
     }
-    .review_rating {
-      width: 15rem;
-      // position: relative;
-      // color: $dark-red-color;
-      span {
-        width: 100%;
-      }
-      svg {
-        width: 100%;
 
-        // fill: $dark-red-color;
-        // stroke: $dark-red-color;
-      }
-    }
     textarea {
       border: none;
       outline: none;

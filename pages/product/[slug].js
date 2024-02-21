@@ -55,7 +55,7 @@ export default function product({ product, related }) {
           </div>
           <div className={styles.product__main}>
             <motion.div
-              whileInView={{ x: [-30, 0], opacity: [0, 0, 1] }}
+              useInView={{ x: [-30, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
             >
               <MainSwiper
@@ -65,7 +65,7 @@ export default function product({ product, related }) {
               />
             </motion.div>
             <motion.div
-              whileInView={{ x: [30, 0], opacity: [0, 0, 1] }}
+              useInView={{ x: [30, 0], opacity: [0, 0, 1] }}
               transition={{ duration: 1 }}
             >
               <Infos product={product} setActiveImg={setActiveImg} />
@@ -121,11 +121,11 @@ export async function getServerSideProps(context) {
       return p.color;
     }),
     priceRange: subProduct.discount
-      ? `From ${(prices[0] - prices[0] / subProduct.discount).toFixed(2)} to ${(
+      ? `From ${(prices[0] - prices[0] / subProduct.discount).toFixed(2)} - ${(
           prices[prices.length - 1] -
           prices[prices.length - 1] / subProduct.discount
-        ).toFixed(2)}$`
-      : `From ${prices[0]} to ${prices[prices.length - 1]}$`,
+        ).toFixed(2)}₦`
+      : `From ${prices[0]} to ${prices[prices.length - 1]}₦`,
     price:
       subProduct.discount > 0
         ? (

@@ -47,7 +47,7 @@ export default function ProductsSwiper({ header, products, bg }) {
               <div className={styles.product__img}>
                 <Link href={`/product/${product.slug}?style=${0}&size=${0}`}>
                   <img
-                    src={product?.subProducts?.[i]?.images?.[0]?.url}
+                    src={product?.subProducts?.[0]?.images?.[0]?.url}
                     alt=""
                   />
                 </Link>
