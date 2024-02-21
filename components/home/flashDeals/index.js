@@ -83,39 +83,39 @@ export default function FlashDeals({ products }) {
                         <span>-{product.subProducts[0].discount}%</span>
                       </div>
                     </div>
-                    <motion.div
+                    {/* <motion.div
                       whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
                       transition={{ duration: 0.5 }}
-                    >
-                      <div className={styles.card__price}>
-                        <span>
-                          ₦
-                          {(
-                            product.subProducts[0].sizes[0].price -
+                    > */}
+                    <div className={styles.card__price}>
+                      <span>
+                        ₦
+                        {(
+                          product.subProducts[0].sizes[0].price -
+                          product.subProducts[0].sizes[0].price /
+                            product.subProducts[0].discount
+                        ).toFixed(2)}
+                      </span>
+                      <span>
+                        -₦
+                        {(
+                          product.subProducts[0].sizes[0].price -
+                          (product.subProducts[0].sizes[0].price -
                             product.subProducts[0].sizes[0].price /
-                              product.subProducts[0].discount
-                          ).toFixed(2)}
-                        </span>
-                        <span>
-                          -₦
-                          {(
-                            product.subProducts[0].sizes[0].price -
-                            (product.subProducts[0].sizes[0].price -
-                              product.subProducts[0].sizes[0].price /
-                                product.subProducts[0].discount)
-                          ).toFixed(2)}
-                        </span>
-                      </div>
-                      <div className={styles.card__bar}>
-                        <div
-                          className={styles.card__bar_inner}
-                          style={{ width: `${product.subProducts[0].sold}%` }}
-                        ></div>
-                      </div>
-                      <div className={styles.card__percentage}>
-                        {product.subProducts[0].sold}% Sold
-                      </div>
-                    </motion.div>
+                              product.subProducts[0].discount)
+                        ).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.card__bar}>
+                      <div
+                        className={styles.card__bar_inner}
+                        style={{ width: `${product.subProducts[0].sold}%` }}
+                      ></div>
+                    </div>
+                    <div className={styles.card__percentage}>
+                      {product.subProducts[0].sold}% Sold
+                    </div>
+                    {/* </motion.div> */}
                   </div>
 
                   {/* ))} */}

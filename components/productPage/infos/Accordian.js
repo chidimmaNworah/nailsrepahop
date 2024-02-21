@@ -87,7 +87,7 @@ export default function Accordian({ details }) {
             <div
               className={`${styles.infos__description_text} scrollbar-thumb-[#5a141d] scrollbar-track-[#e6bac8]`}
             >
-              <div className="h-60 overflow-y-scroll mb-4 scrollbar-thin h-32 overflow-y-scroll">
+              <div className="h-30 overflow-y-scroll mb-4 scrollbar-thin h-32 overflow-y-scroll">
                 <div
                   className="responsive-photo text-[#e6bac8]"
                   dangerouslySetInnerHTML={{ __html: details[0] }}

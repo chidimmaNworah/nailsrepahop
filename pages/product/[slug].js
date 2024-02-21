@@ -23,7 +23,26 @@ export default function product({ product, related }) {
   return (
     <>
       <Head>
-        <title>{product.name}</title>
+        <tilte>{product.name}</tilte>
+        <meta name="description" content={product.description} />
+        {/* <meta
+          name="keywords"
+          content="Nails Republic is a Manicure and Pedicure Cosmetic and Healthcare
+          enthusiast's one-stop destination for all hs or her needs.
+          Nailsrepublic.co is a highly trusted and safe website with an
+          excellent Safety Core. It is a recommended platform for a wide range
+          of services for Finger related Aestethics, and a boutique Nail care
+          and Fashion"
+        /> */}
+        <meta property="og:title" content={product.name} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={product.slug} />
+        <meta property="og:image" content={product.description_images} />
+        <meta property="og:site_name" content="Nails Republic" />
+        {/* twitter cards */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@nailrepublik" />
+        <meta name="twitter:creator" content="@kimmoramicky" />
       </Head>
       <Header country={country} />
       <div className={styles.product}>

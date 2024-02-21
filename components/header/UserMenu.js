@@ -47,6 +47,13 @@ export default function UserMenu({ session }) {
           <li>
             <Link href="/profile/wishlist">Wishlist</Link>
           </li>
+          {session.user.role == "admin" ? (
+            <li>
+              <Link href="/admin/dashboard">Admin</Link>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       ) : (
         ""

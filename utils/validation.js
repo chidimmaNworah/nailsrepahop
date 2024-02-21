@@ -14,9 +14,10 @@ export const validateCreateProduct = (product, images) => {
       type: "success",
     },
   ];
-  if (images.length < 3) {
+  if (images.length < 1) {
     checks.push({
-      msg: `Choose atleast 3 images (${3 - images.length} remaining).`,
+      // msg: `Choose atleast 1 image (${3 - images.length} remaining).`,
+      msg: `Choose atleast 1 image.`,
       type: "error",
     });
   } else {

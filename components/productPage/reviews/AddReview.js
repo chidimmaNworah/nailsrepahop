@@ -118,7 +118,7 @@ export default function AddReview({ product, setReviews }) {
           />
           <Select
             property={fit}
-            text="How does it fit"
+            text="Fit"
             data={fits.filter((x) => x !== fit)}
             handleChange={setFit}
           />
@@ -130,13 +130,22 @@ export default function AddReview({ product, setReviews }) {
           onChange={(e) => setReview(e.target.value)}
           placeholder="Write your review here"
         />
+        <div className={`${styles.review_rating}`}>
+          <Rating
+            name="half-rating-read"
+            defaultValue={0}
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            precision={1}
+            style={{ color: "#5a141d", fontSize: "3rem" }}
+          />
+        </div>
         <Rating
-          name="half-rating-read"
-          defaultValue={0}
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          precision={0.5}
-          style={{ color: "#5a141d", fontSize: "3rem" }}
+          name="half-rating"
+          defaultValue={product.rating}
+          precision={1}
+          readOnly
+          style={{ color: "#5a141d" }}
         />
         <button
           className={`${styles.login_btn} ${loading ? styles.disabled : ""}`}

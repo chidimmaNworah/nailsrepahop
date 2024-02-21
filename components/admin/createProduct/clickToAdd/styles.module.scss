@@ -17,11 +17,11 @@
   svg {
     width: 30px;
     height: 30px;
-    fill: $dark-red-color;
+    fill: $light-pink-color;
     cursor: pointer;
     margin-top: 5px;
     &:hover {
-      fill: $dark-pink-color;
+      fill: $light-orange-color;
     }
   }
 }
@@ -37,10 +37,10 @@
 .svg {
   width: 30px;
   height: 30px;
-  fill: $dark-red-color;
+  fill: $light-pink-color;
   cursor: pointer;
   margin-top: 5px;
   &:hover {
-    fill: $dark-pink-color;
+    fill: $light-orange-color;
   }
 }

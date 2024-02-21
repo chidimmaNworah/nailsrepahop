@@ -25,6 +25,7 @@ import dataURItoBlob from "@/utils/dataURItoBlob";
 import { uploadImages } from "@/requests/upload";
 import DotLoader from "@/components/loaders/dotLoader";
 import { useRouter } from "next/router";
+import ShippingDetail from "@/components/admin/createProduct/clickToAdd/Shipping";
 
 const initialState = {
   name: "",
@@ -60,7 +61,7 @@ const initialState = {
       answer: "",
     },
   ],
-  shippingFee: "",
+  shipping: "",
 };
 
 export default function create({ parents, categories }) {
@@ -200,52 +201,6 @@ export default function create({ parents, categories }) {
       toast.error(error);
     }
   };
-
-  // const createProductHandler = async () => {
-  //   try {
-  //     let uploadedImages = [];
-  //     let styleImg = "";
-  //     let path = "product images";
-
-  //     // Upload carousel images
-  //     if (images) {
-  //       const formData = new FormData();
-  //       formData.append("path", path);
-
-  //       images.forEach((img) => {
-  //         const blob = dataURItoBlob(img);
-  //         formData.append("file", blob);
-  //       });
-
-  //       uploadedImages = await uploadImages(formData);
-  //     }
-
-  //     // Upload style image
-  //     if (product.color.image) {
-  //       const blob = dataURItoBlob(product.color.image);
-  //       const formData = new FormData();
-  //       formData.append("path", path);
-  //       formData.append("file", blob);
-
-  //       const cloudinaryStyleImg = await uploadImages(formData);
-  //       styleImg = cloudinaryStyleImg[0].url;
-  //     }
-
-  //     // Send product data to backend
-  //     const { data } = await axios.post("/api/admin/product", {
-  //       ...product,
-  //       images: uploadedImages,
-  //       color: {
-  //         image: styleImg,
-  //         color: product.color.color,
-  //       },
-  //     });
-  //     toast.success(data.message);
-  //   } catch (error) {
-  //     setLoading(false);
-  //     toast.error("An error has occured", error);
-  //   }
-  // };
 
   return (
     <Layout>
@@ -389,19 +344,21 @@ export default function create({ parents, categories }) {
               product={product}
               setProduct={setProduct}
             />
-            {/*
+            <ShippingDetail
+              shipping={product.shipping}
+              product={product}
+              setProduct={setProduct}
+            />
+
             <Images
               name="imageDescInputFile"
               header="Product Description Images"
               text="Add images"
               images={description_images}
-              setImages={setDescriptionImages}
+              setImages={setDescription_images}
               setColorImage={setColorImage}
             />
-           
-       
-          
-            */}
+
             <button
               className={`${styles.btn} ${styles.btn__primary} ${styles.submit_btn}`}
               type="submit"

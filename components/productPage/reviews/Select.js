@@ -6,7 +6,7 @@ export default function Select({ property, text, data, handleChange }) {
   // console.log(data);
   return (
     <div className={styles.select}>
-      {text}:
+      <p>{text}:</p>
       <div
         className={styles.select__header}
         onMouseOver={() => setVisible(true)}
@@ -27,10 +27,10 @@ export default function Select({ property, text, data, handleChange }) {
             property || `Select ${text}`
           ) : text == "Style" && property.image ? (
             <img src={property.image} alt="" />
-          ) : text == "How does it fit" && property ? (
+          ) : text == "Fit" && property ? (
             property
-          ) : !property && text == "How does it fit" ? (
-            "How Does it fit"
+          ) : !property && text == "Fit" ? (
+            "Fit"
           ) : (
             "Select Style"
           )}

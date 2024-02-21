@@ -38,37 +38,54 @@ export default function Home({ country, products, productsByCategory }) {
     <div>
       <Head>
         <tilte>
-          NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
+          {/* NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
           equipments, Nail Fashion for Unisex, Wholesale Suppliers, and
-          Professional Designers and Nail Studios and more.
+          Professional Designers and Nail Studios and more. */}
+          Nails Republic
         </tilte>
         <meta
           name="description"
-          content="NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
-          equipments, Nail Fashion for Unisex, Wholesale Suppliers, and
-          Professional Designers and Nail Studios and more."
+          content="Nails Republic is a Manicure and Pedicure Cosmetic and Healthcare
+          enthusiast's one-stop destination for all hs or her needs.
+          Nailsrepublic.co is a highly trusted and safe website with an
+          excellent Safety Core. It is a recommended platform for a wide range
+          of services for Finger related Aestethics, and a boutique Nail care
+          and Fashion"
         />
         <meta
           name="keywords"
-          content="NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
-          equipments, Nail Fashion for Unisex, Wholesale Suppliers, and
-          Professional Designers and Nail Studios and more."
+          content="Nails Republic is a Manicure and Pedicure Cosmetic and Healthcare
+          enthusiast's one-stop destination for all hs or her needs.
+          Nailsrepublic.co is a highly trusted and safe website with an
+          excellent Safety Core. It is a recommended platform for a wide range
+          of services for Finger related Aestethics, and a boutique Nail care
+          and Fashion"
         />
         <meta
           property="og:title"
-          content="NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
-          equipments, Nail Fashion for Unisex, Wholesale Suppliers, and
-          Professional Designers and Nail Studios and more."
+          content="Nails Republic is a Manicure and Pedicure Cosmetic and Healthcare
+          enthusiast's one-stop destination for all hs or her needs.
+          Nailsrepublic.co is a highly trusted and safe website with an
+          excellent Safety Core. It is a recommended platform for a wide range
+          of services for Finger related Aestethics, and a boutique Nail care
+          and Fashion"
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://shop.nailsrepublic.co" />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/logo.png" />
         <meta
           property="og:site_name"
-          content="NailsRepublic - Online Shopping for NailArt, Manicure & Pedicure
-          equipments, Nail Fashion for Unisex, Wholesale Suppliers, and
-          Professional Designers and Nail Studios and more."
+          content="Nails Republic is a Manicure and Pedicure Cosmetic and Healthcare
+          enthusiast's one-stop destination for all hs or her needs.
+          Nailsrepublic.co is a highly trusted and safe website with an
+          excellent Safety Core. It is a recommended platform for a wide range
+          of services for Finger related Aestethics, and a boutique Nail care
+          and Fashion"
         />
+        {/* twitter cards */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@nailrepublik" />
+        <meta name="twitter:creator" content="@kimmoramicky" />
       </Head>
       <Header country={country} />
       <div className={styles.home}>
@@ -85,6 +102,7 @@ export default function Home({ country, products, productsByCategory }) {
               products={products}
               background="#c9454b"
             />
+            {/* nail art, fashion and accessories */}
             {/* </motion.div> */}
             {/* {!isMedium && ( */}
             {/* <motion.div
@@ -96,6 +114,7 @@ export default function Home({ country, products, productsByCategory }) {
               products={products}
               background="#704271"
             />
+            {/* combo and tools */}
             {/* </motion.div> */}
             {/* )} */}
             {/* <Category
@@ -113,21 +132,23 @@ export default function Home({ country, products, productsByCategory }) {
               header="For Entreprenuers & Creators"
               bg="#6cc070"
             />
-          </motion.div>
-          {/* <ForCreators
+            {/* Fasion and accessories */}
+            {/* <ForCreators
             products={products}
             headers="Unique & Stylish"
             bg="#ca4987"
           /> */}
-          {/* <motion.div
+            {/* <motion.div
             whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
             transition={{ duration: 0.5 }}
           > */}
-          <ForCreators
-            products={products}
-            header="Unique & Stylish"
-            bg="#ca4987"
-          />{" "}
+            <ForCreators
+              products={products}
+              header="Unique & Stylish"
+              bg="#ca4987"
+            />{" "}
+            {/* treatment and nail art */}
+          </motion.div>
           {/* </motion.div> */}
           <div className={styles.products}>
             {products?.map((product) => (
