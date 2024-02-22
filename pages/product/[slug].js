@@ -37,7 +37,7 @@ export default function product({ product, related }) {
         <meta property="og:title" content={product.name} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={product.slug} />
-        <meta property="og:image" content={product.description_images} />
+        <meta property="og:image" content={product.description_images[0].url} />
         <meta property="og:site_name" content="Nails Republic" />
         {/* twitter cards */}
         <meta name="twitter:card" content="summary" />
