@@ -26,6 +26,7 @@ import { uploadImages } from "@/requests/upload";
 import DotLoader from "@/components/loaders/dotLoader";
 import { useRouter } from "next/router";
 import ShippingDetail from "@/components/admin/createProduct/clickToAdd/Shipping";
+import DescriptionImages from "@/components/admin/createProduct/descriptionImages";
 
 const initialState = {
   name: "",
@@ -69,7 +70,7 @@ export default function create({ parents, categories }) {
   const [subs, setSubs] = useState([]);
   const [colorImage, setColorImage] = useState("");
   const [images, setImages] = useState([]);
-  const [description_images, setDescription_images] = useState("");
+  const [description_images, setDescription_images] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -156,6 +157,7 @@ export default function create({ parents, categories }) {
       );
     }
   };
+  let uploaded_desc_images = [];
   let uploaded_images = [];
   let style_img = "";
   const createProductHandler = async () => {
@@ -180,6 +182,18 @@ export default function create({ parents, categories }) {
       formData.append("file", temp);
       let cloudinary_style_img = await uploadImages(formData);
       style_img = cloudinary_style_img[0].url;
+    }
+    if (description_images) {
+      let temp = description_images.map((img) => {
+        return dataURItoBlob(img);
+      });
+      const path = "product images";
+      let formData = new FormData();
+      formData.append("path", path);
+      temp.forEach((image) => {
+        formData.append("file", image);
+      });
+      uploaded_desc_images = await uploadImages(formData);
     }
     try {
       // setLoading(true);
@@ -350,7 +364,7 @@ export default function create({ parents, categories }) {
               setProduct={setProduct}
             />
 
-            <Images
+            <DescriptionImages
               name="imageDescInputFile"
               header="Product Description Images"
               text="Add images"

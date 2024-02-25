@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { showDialog } from "@/store/DialogSlice";
 import styles from "./styles.module.scss";
 import { GiExtractionOrb } from "react-icons/gi";
-export default function Images({
+export default function DescriptionImages({
   images,
   setImages,
   header,
@@ -131,17 +131,6 @@ export default function Images({
               <div className={styles.images__main_grid_wrap} key={i}>
                 <div className={styles.blur}></div>
                 <img src={img} alt="" />
-                <div className={styles.images__main_grid_actions}>
-                  <button onClick={() => handleRemove(img)}>
-                    <RiDeleteBin7Fill />
-                  </button>
-                  <button onClick={() => setColorImage(img)}>
-                    <GiExtractionOrb />
-                  </button>
-                  <button>
-                    <RiShape2Line />
-                  </button>
-                </div>
               </div>
             ))
           )}
