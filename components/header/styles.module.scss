@@ -1,6 +1,8 @@
 .header {
   height: 100%;
   // box-shadow: $shadow-1;
+  // position: sticky;
+  margin-bottom: 1.5rem;
 }
 
 // AD -------------------------------------------
@@ -30,9 +32,9 @@
 
 // TOP -------------------------------------------
 .top {
-  background: $light-orange-color;
-  border-top: 1px solid $light-orange-color;
-  border-bottom: 1px solid $light-orange-color;
+  background: transparent;
+  // border-top: 1px solid $light-orange-color;
+  // border-bottom: 1px solid $dark-red-color;
   &__container {
     max-width: 95%;
     margin: 0 auto;
@@ -172,11 +174,11 @@
 }
 
 .main {
-  // position: fixed;
-  height: 40px;
+  // position: sticky;
+  // height: 40px;
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  // margin-top: 20px;
   &__container {
     max-width: 1000px;
     margin: 0 auto;
@@ -200,7 +202,7 @@
     background: transparent;
     height: 40px;
     border-radius: 5px;
-    border: 1px solid $light-orange-color;
+    border: 1px solid $dark-red-color;
 
     input {
       border: none;
@@ -209,20 +211,21 @@
       height: 100%;
       background: transparent;
       padding-left: 1rem;
+      // color: $light-pink-color;
     }
     &__icon {
       width: 40px;
       height: 40px;
       display: grid;
       place-items: center;
-      background: $light-orange-color;
+      background: $dark-red-color;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       cursor: pointer;
       svg {
         width: 21px;
         height: 21px;
-        fill: $dark-red-color;
+        fill: $light-pink-color;
       }
     }
   }
@@ -232,7 +235,7 @@
   svg {
     width: 35px;
     height: 35px;
-    fill: yellow;
+    fill: $dark-red-color;
     cursor: pointer;
     &:hover {
       fill: $light-orange-color;

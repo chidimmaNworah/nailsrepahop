@@ -14,7 +14,7 @@
     align-items: center;
     gap: 10px;
     position: absolute;
-    right: 1rem;
+    right: 0.1rem;
     @media (max-width: 1300px) {
       position: relative;
     }
@@ -114,7 +114,7 @@
       align-items: center;
       margin-top: 1px;
       svg {
-        fill: $light-orange-color;
+        fill: $orange-red;
       }
     }
   }
@@ -131,7 +131,7 @@
     bottom: 0;
     width: 29px;
     height: 25%;
-    background: $light-orange-color;
+    background: $orange-red;
   }
   &:hover {
     span {

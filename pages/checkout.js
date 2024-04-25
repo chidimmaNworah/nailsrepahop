@@ -9,11 +9,20 @@ import Shipping from "@/components/checkout/shipping";
 import Products from "@/components/checkout/products";
 import Payment from "@/components/checkout/payment";
 import Summary from "@/components/checkout/summary";
+import { useDispatch } from "react-redux";
+import { emptyCart } from "@/store/cartSlice";
 export default function checkout({ cart, user }) {
   const [addresses, setAddresses] = useState(user?.address || []);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [totalAfterDiscount, setTotalAfterDiscount] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // Clear the cart on component mount
+  //   dispatch(emptyCart());
+  // }, []);
+
   useEffect(() => {
     let check = addresses?.find((ad) => ad.active == true);
     if (check) {
@@ -54,7 +63,7 @@ export default function checkout({ cart, user }) {
   );
 }
 export async function getServerSideProps(context) {
-  db.connectDb();
+  await db.connectDb();
   const session = await getSession(context);
 
   if (!session) {
@@ -73,7 +82,7 @@ export async function getServerSideProps(context) {
     };
   }
   const cart = await Cart.findOne({ user: user._id });
-  db.disconnectDb();
+  await db.disconnectDb();
   if (!cart) {
     return {
       redirect: {

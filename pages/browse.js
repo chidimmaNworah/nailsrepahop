@@ -24,6 +24,7 @@ import { useRouter } from "next/router";
 import { Pagination } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import Footer from "@/components/footer";
 export default function Browse({
   categories,
   subCategories,
@@ -35,8 +36,12 @@ export default function Browse({
   patterns,
   materials,
   paginationCount,
-  country,
+  // country,
 }) {
+  const country = {
+    name: "Nigeria",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/ng.svg",
+  };
   const router = useRouter();
   const filter = ({
     search,
@@ -196,103 +201,112 @@ export default function Browse({
   console.log(scrollY, height);
   //---------------------------------
   return (
-    <div className={styles.browse}>
-      <div ref={headerRef}>
-        <Header searchHandler={searchHandler} country={country} />
-      </div>
-      <div className={styles.browse__container}>
-        <div ref={el}>
-          <div className={styles.browse__path}>Home / Browse</div>
-          <div className={styles.browse__tags}>
-            {categories.map((c) => (
-              <Link href="" key={c._id} legacyBehavior>
-                <a>{c.name}</a>
-              </Link>
-            ))}
-          </div>
+    <>
+      <div className={styles.browse}>
+        <div ref={headerRef}>
+          <Header searchHandler={searchHandler} country={country} />
         </div>
-        <div
-          className={`${styles.browse__store} ${
-            scrollY >= height ? styles.fixed : ""
-          }`}
-        >
-          <div
-            className={`${styles.browse__store_filters} ${styles.scrollbar}`}
-          >
-            <button
-              className={styles.browse__clearBtn}
-              onClick={() => router.push("/browse")}
-            >
-              Clear All ({Object.keys(router.query).length})
-            </button>
-            <CategoryFilter
-              categories={categories}
-              subCategories={subCategories}
-              categoryHandler={categoryHandler}
-              replaceQuery={replaceQuery}
-            />
-            <SizesFilter sizes={sizes} sizeHandler={sizeHandler} />
-            <ColorsFilter
-              colors={colors}
-              colorHandler={colorHandler}
-              replaceQuery={replaceQuery}
-            />
-            <BrandsFilter
-              brands={brands}
-              brandHandler={brandHandler}
-              replaceQuery={replaceQuery}
-            />
-            <StylesFilter
-              data={stylesData}
-              styleHandler={styleHandler}
-              replaceQuery={replaceQuery}
-            />
-            <PatternsFilter
-              patterns={patterns}
-              patternHandler={patternHandler}
-              replaceQuery={replaceQuery}
-            />
-            <MaterialsFilter
-              materials={materials}
-              materialHandler={materialHandler}
-              replaceQuery={replaceQuery}
-            />
-            <GenderFilter
-              genderHandler={genderHandler}
-              replaceQuery={replaceQuery}
-            />
-          </div>
-          <div className={styles.browse__store_products_wrap}>
-            <HeadingFilters
-              priceHandler={priceHandler}
-              multiPriceHandler={multiPriceHandler}
-              shippingHandler={shippingHandler}
-              ratingHandler={ratingHandler}
-              replaceQuery={replaceQuery}
-              sortHandler={sortHandler}
-            />
-            <div className={styles.browse__store_products}>
-              {products.map((product) => (
-                <ProductCard product={product} key={product._id} />
+        <div className={styles.browse__container}>
+          <div ref={el}>
+            <div className={styles.browse__path}>Home / Browse</div>
+            <div className={styles.browse__tags}>
+              {categories.map((c) => (
+                <Link href="" key={c._id} legacyBehavior>
+                  <a>{c.name}</a>
+                </Link>
               ))}
             </div>
-            <div className={styles.pagination}>
-              <Pagination
-                count={paginationCount}
-                defaultPage={Number(router.query.page) || 1}
-                onChange={pageHandler}
-                variant="outlined"
-                color="primary"
+          </div>
+          <div
+            className={`${styles.browse__store} ${
+              scrollY >= height ? styles.fixed : ""
+            }`}
+          >
+            <div
+              className={`${styles.browse__store_filters} ${styles.scrollbar}`}
+            >
+              <button
+                className={styles.browse__clearBtn}
+                onClick={() => router.push("/browse")}
+              >
+                Clear All ({Object.keys(router.query).length})
+              </button>
+              <CategoryFilter
+                categories={categories}
+                subCategories={subCategories}
+                categoryHandler={categoryHandler}
+                replaceQuery={replaceQuery}
               />
+              <SizesFilter sizes={sizes} sizeHandler={sizeHandler} />
+              <ColorsFilter
+                colors={colors}
+                colorHandler={colorHandler}
+                replaceQuery={replaceQuery}
+              />
+              <BrandsFilter
+                brands={brands}
+                brandHandler={brandHandler}
+                replaceQuery={replaceQuery}
+              />
+              <StylesFilter
+                data={stylesData}
+                styleHandler={styleHandler}
+                replaceQuery={replaceQuery}
+              />
+              <PatternsFilter
+                patterns={patterns}
+                patternHandler={patternHandler}
+                replaceQuery={replaceQuery}
+              />
+              <MaterialsFilter
+                materials={materials}
+                materialHandler={materialHandler}
+                replaceQuery={replaceQuery}
+              />
+              <GenderFilter
+                genderHandler={genderHandler}
+                replaceQuery={replaceQuery}
+              />
+            </div>
+            <div className={styles.browse__store_products_wrap}>
+              <HeadingFilters
+                priceHandler={priceHandler}
+                multiPriceHandler={multiPriceHandler}
+                shippingHandler={shippingHandler}
+                ratingHandler={ratingHandler}
+                replaceQuery={replaceQuery}
+                sortHandler={sortHandler}
+              />
+              <div className={styles.browse__store_products}>
+                {products.map((product) => (
+                  <ProductCard product={product} key={product._id} />
+                ))}
+              </div>
+              <div className={styles.pagination}>
+                <Pagination
+                  count={paginationCount}
+                  defaultPage={Number(router.query.page) || 1}
+                  onChange={pageHandler}
+                  variant="outlined"
+                  color="primary"
+                />
+              </div>
             </div>
           </div>
         </div>
+        {/* <div>
+          <Footer country={country} />
+        </div> */}
       </div>
-    </div>
+    </>
   );
 }
 
 export async function getServerSideProps(ctx) {
+  const country = {
+    name: "Nigeria",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/ng.svg",
+  };
   const { query } = ctx;
   //-------------------------------------------------->
   const searchQuery = query.search || "";
@@ -457,16 +471,16 @@ export async function getServerSideProps(ctx) {
     }
     return styleRegex;
   }
-  let data = await axios
-    .get("https://api.ipregistry.co/?key=r208izz0q0icseks")
-    .then((res) => {
-      return res.data.location.country;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // let data = await axios
+  //   .get("https://api.ipregistry.co/?key=r208izz0q0icseks")
+  //   .then((res) => {
+  //     return res.data.location.country;
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
   //-------------------------------------------------->
-  db.connectDb();
+  await db.connectDb();
   let productsDb = await Product.find({
     ...search,
     ...category,
@@ -535,12 +549,12 @@ export async function getServerSideProps(ctx) {
       patterns,
       materials,
       paginationCount: Math.ceil(totalProducts / pageSize),
-      country: {
-        name: "Nigeria",
-        // flag: "https://cdn.ipregistry.co/flags/emojitwo/ng.svg",
-        flag: "none",
-        code: "NG",
-      },
+      // country: {
+      //   name: "Nigeria",
+      //   flag: "https://cdn.ipregistry.co/flags/emojitwo/ng.svg",
+      //   flag: "none",
+      //   code: "NG",
+      // },
     },
   };
 }

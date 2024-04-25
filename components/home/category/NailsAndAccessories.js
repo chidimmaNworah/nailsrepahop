@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 export default function NailArt({ header, products, background }) {
-  console.log("products: ", products);
+  // console.log("products: ", products);
   const isMedium = useMediaQuery({ query: "(max-width:1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
   const categoryOptions = ["Nail Art", "Fashion", "Accessories"];

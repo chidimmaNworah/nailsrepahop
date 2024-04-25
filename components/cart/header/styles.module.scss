@@ -24,18 +24,18 @@
     a {
       display: flex;
       align-items: center;
-      color: $light-pink-color;
+      color: $dark-red-color;
       text-transform: uppercase;
       font-size: 13px;
     }
     svg {
-      fill: $light-pink-color;
+      fill: $dark-red-color;
       width: 16px;
       height: 16px;
     }
     &:hover {
       text-decoration: underline;
-      color: $light-pink-color;
+      color: $dark-red-color;
       cursor: pointer;
     }
   }

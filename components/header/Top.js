@@ -4,13 +4,26 @@ import { RiAccountPinCircleLine, RiArrowDropDownFill } from "react-icons/ri";
 import { motion, Variants } from "framer-motion";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Import useEffect
 import UserMenu from "./UserMenu";
 import { useSession } from "next-auth/react";
 
 export default function Top({ country }) {
   const { data: session } = useSession();
   const [visible, setVisible] = useState(false);
+
+  // Add useEffect to delay hiding the UserMenu
+  useEffect(() => {
+    let timer;
+    if (!visible) {
+      // Hide UserMenu after 500ms if mouse leaves the menu area
+      timer = setTimeout(() => {
+        setVisible(false);
+      }, 500);
+    }
+    return () => clearTimeout(timer);
+  }, [visible]);
+
   return (
     <div className={styles.top}>
       <div className={styles.top__container}>
@@ -53,6 +66,7 @@ export default function Top({ country }) {
           >
             {session ? (
               // <li>
+
               <div className={styles.flex}>
                 <img src={session.user.image} alt="user_image" />
                 <span>{session.user.name}</span>
@@ -68,7 +82,14 @@ export default function Top({ country }) {
               </div>
               // </li>
             )}
-            {visible && <UserMenu session={session} />}
+            <motion.div
+              initial={{ opacity: 1, y: -20 }}
+              animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -20 }}
+              transition={{ duration: 0.2 }}
+              // style={{ position: "absolute", top: "100%", left: 0 }}
+            >
+              {visible && <UserMenu session={session} />}
+            </motion.div>
           </li>
         </ul>
       </div>

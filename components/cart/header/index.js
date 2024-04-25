@@ -9,7 +9,7 @@ export default function Header() {
       <div className={styles.header__container}>
         <div className={styles.header__left}>
           <Link href="/">
-            <img src="/logo.png" alt="" />
+            <img src="/logo1.png" alt="" />
           </Link>
         </div>
         <div className={styles.header__right}>

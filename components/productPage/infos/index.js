@@ -118,50 +118,46 @@ export default function Infos({ product, setActiveImg }) {
     <div className={styles.infos}>
       <DialogModal />
       <div className={`px-4 ${styles.infos__container}`}>
-        <div className="p-2 border border-[#e6bac8] rounded-s-xl border-dotted">
-          <p className={`${styles.infos__description} tracking-wide font-bold`}>
+        <div className={styles.infos__ratinger}>
+          <p
+            className={`${styles.infos__description} tracking-wide font-semibold`}
+          >
             {product.name}
           </p>
+          <div className={styles.infos__rating}>
+            <Rating
+              name="half-rating-read"
+              defaultValue={product.rating}
+              precision={1}
+              readOnly
+              style={{ color: "#B48E19" }}
+            />
+            ({product.numReviews}
+            {product.numReviews == 1 ? " review" : " reviews"})
+          </div>
         </div>
 
-        <div className={styles.infos__price}>
-          {!size ? <h2>{product.priceRange}</h2> : <h1>{product.price}₦</h1>}
-          {product.discount > 0 ? (
-            <h3>
-              {size && <span>{product.priceBefore}₦</span>}{" "}
-              <span>(-{product.discount}%)</span>
-            </h3>
-          ) : (
-            ""
-          )}
-        </div>
-        <span className={styles.infos__shipping}>
-          {product.shipping
-            ? `+${product.shipping}₦ Shipping fee`
-            : "Free Shipping"}
-        </span>
-        <div className={styles.infos__rating}>
-          <Rating
-            name="half-rating-read"
-            defaultValue={product.rating}
-            precision={1}
-            readOnly
-            style={{ color: "#B48E19" }}
-          />
-          ({product.numReviews}
-          {product.numReviews == 1 ? " review" : " reviews"})
+        <div className={styles.infos__pricer}>
+          <div className={styles.infos__price}>
+            {!size ? <h2>{product.priceRange}</h2> : <h1>{product.price}₦</h1>}
+            {product.discount > 0 ? (
+              <h3>
+                {size && <span>{product.priceBefore}₦</span>}{" "}
+                <span>(-{product.discount}%)</span>
+              </h3>
+            ) : (
+              ""
+            )}
+          </div>
+          <span className={styles.infos__shipping}>
+            {product.shipping
+              ? `+${product.shipping}₦ Shipping fee`
+              : "Free Shipping"}
+          </span>
         </div>
 
-        <div className={styles.infos__brand}>
-          <span>Brand: </span>
-          <span>{product.brand}</span>
-        </div>
-        <div className={styles.infos__sku}>
-          <span>Product Code: </span>
-          <span>{product.sku}</span>
-        </div>
         <div className={styles.infos__availability}>
-          <span>Availability: </span>
+          {/* <span>Availability: </span> */}
           <span className="">
             {size
               ? product.quantity
@@ -216,7 +212,11 @@ export default function Infos({ product, setActiveImg }) {
             <TbPlus />
           </button>
         </div>
-        <Accordian details={[product.description, ...product.details]} />
+        <Accordian
+          brand={product.brand}
+          code={product.sku}
+          details={[product.description, ...product.details]}
+        />
 
         {error && <span className={styles.error}>{error}</span>}
         {success && <span className={styles.success}>{success}</span>}
@@ -235,7 +235,7 @@ export default function Infos({ product, setActiveImg }) {
           </button>
         </div>
 
-        <Share />
+        <Share post={product} />
         {/* <SimillarSwiper /> */}
       </div>
     </div>

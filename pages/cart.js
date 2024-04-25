@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Empty from "@/components/cart/empty";
 import Header from "@/components/cart/header";
 import CartProduct from "@/components/cart/product";
@@ -9,7 +10,6 @@ import { updateCart } from "@/store/cartSlice";
 import CartHeader from "@/components/cart/cartHeader.js";
 import Checkout from "@/components/cart/checkout";
 import PaymentMethods from "@/components/cart/paymentMethods.js";
-import ProductsSwiper from "@/components/productsSwiper";
 import { women_swiper } from "@/data/home";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -17,7 +17,9 @@ import { saveCart } from "@/requests/user";
 import Product from "@/models/Product";
 import Category from "@/models/Category";
 import db from "@/utils/db";
-export default function cart({ products }) {
+import Footer from "@/components/footer";
+import ProductsSwiper from "@/components/productsSwiper";
+export default function cart({ products, country }) {
   const Router = useRouter();
   const { data: session } = useSession();
   const [selected, setSelected] = useState([]);
@@ -92,14 +94,15 @@ export default function cart({ products }) {
         ) : (
           <Empty />
         )}
-        <ProductsSwiper products={products} />
       </div>
+      {/* <ProductsSwiper products={products} /> */}
+      <Footer country={country} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  db.connectDb();
+  await db.connectDb();
   let products = await Product.find()
     .populate({ path: "category", model: Category })
     .sort({ createdAt: -1 })
@@ -109,6 +112,11 @@ export async function getServerSideProps() {
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
+      country: {
+        name: "Nigeria",
+        flag: "https://cdn.ipregistry.co/flags/emojitwo/ng.svg",
+        code: "NG",
+      },
     },
   };
 }

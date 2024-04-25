@@ -112,7 +112,7 @@ export default function Home({ country, products, productsByCategory }) {
             <ToolsAndEquipments
               header="Tools & Equipments"
               products={products}
-              background="#704271"
+              background="#c9454b"
             />
             {/* combo and tools */}
             {/* </motion.div> */}
@@ -130,7 +130,7 @@ export default function Home({ country, products, productsByCategory }) {
             <ForEntreprenuers
               products={products}
               header="For Entreprenuers & Creators"
-              bg="#6cc070"
+              bg="#5a141d"
             />
             {/* Fasion and accessories */}
             {/* <ForCreators
@@ -145,7 +145,7 @@ export default function Home({ country, products, productsByCategory }) {
             <ForCreators
               products={products}
               header="Unique & Stylish"
-              bg="#ca4987"
+              bg="#c9454b"
             />{" "}
             {/* treatment and nail art */}
           </motion.div>
@@ -163,12 +163,12 @@ export default function Home({ country, products, productsByCategory }) {
 }
 
 export async function getServerSideProps() {
-  db.connectDb();
+  await db.connectDb();
   let products = await Product.find()
     .populate({ path: "category", model: Category })
     .sort({ createdAt: -1 })
-    .lean()
-    .maxTimeMS(30000);
+    .lean();
+  // .maxTimeMS(30000);
 
   // let data = await axios
   //   .get("https://api.ipregistry.co/?key=8buu5nzbgsrrfuf3")

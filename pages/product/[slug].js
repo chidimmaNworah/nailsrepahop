@@ -89,6 +89,7 @@ export default function product({ product, related }) {
           </motion.div>
         </div>
       </div>
+      <Footer country={country} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 .footer {
-  background: $light-pink-color;
+  background: $dark-red-color;
   @media (max-width: 460px) {
     margin-top: 2rem;
   }
@@ -34,14 +34,14 @@
   h3 {
     font-size: 12px;
     font-weight: 700;
-    color: $dark-red-color;
+    color: #ccc;
   }
   &__links {
     grid-area: links;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    color: $dark-red-color;
+    color: #ccc;
     @media (max-width: 460px) {
       display: flex;
       flex-wrap: wrap;
@@ -51,12 +51,12 @@
       padding: 5px;
       b: {
         text-transform: uppercase;
-        color: $dark-red-color;
+        color: #ccc;
       }
       li {
         font-size: 12px;
         a {
-          color: $brownish-red;
+          color: $light-pink-color;
           line-height: 23px;
           &:hover {
             text-decoration: underline;
@@ -75,9 +75,9 @@
         gap: 1rem;
         li {
           font-size: 2rem;
-          color: $brownish-red;
+          color: $light-pink-color;
           &:hover {
-            color: $dark-red-color;
+            color: #ccc;
           }
         }
       }
@@ -99,19 +99,21 @@
       flex: 1;
       height: 40px;
       outline: none;
-      border: 1px solid $brownish-red;
+      border: 1px solid $light-pink-color;
       font-size: 14px;
       padding-left: 10px;
     }
     button {
       width: 160px;
+      background: $light-pink-color !important;
+      color: $dark-red-color;
     }
     p {
       margin-top: 10px;
       font-size: 12px;
-      color: $brownish-red;
+      color: $light-pink-color;
       a {
-        color: $dark-red-color;
+        color: #ccc;
         text-decoration: underline;
       }
     }
@@ -134,7 +136,7 @@
     grid-area: copyright;
     section {
       font-size: 12px;
-      color: $brownish-red;
+      color: $light-pink-color;
       padding-bottom: 10px;
     }
     ul {
@@ -149,7 +151,7 @@
           content: "";
           width: 1px;
           height: 15px;
-          background: $brownish-red;
+          background: $light-pink-color;
           right: -1rem;
         }
         &:last-of-type::after {

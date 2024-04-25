@@ -22,6 +22,11 @@ router.post(async (req, res) => {
       products,
       shippingAddress,
       paymentMethod,
+      paymentResult: {
+        id: "",
+        status: "",
+        email: "",
+      },
       total,
       totalBeforeDiscount,
       couponApplied,

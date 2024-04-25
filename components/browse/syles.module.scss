@@ -1,6 +1,6 @@
 .filter {
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   h3 {
     font-size: 17px;
     font-weight: 600;
@@ -9,17 +9,17 @@
     justify-content: space-between;
     cursor: pointer;
     margin-bottom: 10px;
-    color: $light-pink-color;
+    color: $orange-red;
     span {
       svg {
-        fill: #333;
+        fill: $light-pink-color;
         width: 10px;
       }
     }
   }
   label {
     font-size: 12px;
-    color: $light-pink-color;
+    color: #fff;
   }
   section {
     ul {
@@ -39,7 +39,7 @@
         transform: translateY(-50%);
         svg {
           width: 10px;
-          fill: #333;
+          fill: $light-pink-color;
         }
       }
     }
@@ -55,7 +55,7 @@
     }
     label {
       font-size: 15px;
-      color: $light-pink-color;
+      color: #fff;
     }
   }
   &__colors {
@@ -71,26 +71,27 @@
       box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
       cursor: pointer;
       &:hover {
-        outline: 1px solid #000;
+        outline: 1px solid $light-pink-color;
         outline-offset: 3px;
       }
     }
   }
   &__brand {
     background: transparent;
+    padding: 4px 6px;
     width: 100px;
     height: 37px;
     border-radius: 5px;
-    border: 1px solid $light-pink-color;
+    border: 1px solid #fff;
     display: grid;
     place-items: center;
     cursor: pointer;
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 15px;
-    color: $light-pink-color;
+    color: #fff;
     &:hover {
-      border: 1px solid $brownish-red;
+      border: 1px solid $light-pink-color;
     }
     img {
       height: 29px;
@@ -99,9 +100,9 @@
   }
 }
 .activeFilter {
-  border: 1px solid $light-pink-color;
+  border: 1px solid #fff;
 }
 .activeFilterColor {
-  outline: 1px solid $light-pink-color;
+  outline: 1px solid #fff;
   outline-offset: 3px;
 }

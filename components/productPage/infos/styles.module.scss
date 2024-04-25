@@ -9,23 +9,29 @@
     // max-width: 340px;
     width: 100%;
   }
+  &__ratinger {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   &__description {
-    background: $light-pink-color;
-    border-radius: 5px 0 0 5px;
-    padding: 5px 6px;
-    // opacity: 50%;
+    font-size: 18px;
     color: $dark-red-color;
     &_text {
-      border-bottom: 1px solid $light-pink-color;
+      border-bottom: 1px solid $darkless-red-color;
       margin-bottom: 10px;
       font-size: 14px;
       padding-top: 3px;
     }
   }
   &__brand {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     font-size: 12px;
     font-weight: normal;
+    color: $darkless-red-color;
     span {
       :first-of-type {
         color: #666;
@@ -35,6 +41,10 @@
   &__sku {
     font-size: 12px;
     font-weight: normal;
+    color: $darkless-red-color;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $darkless-red-color;
     span {
       :first-of-type {
         color: #666;
@@ -44,6 +54,7 @@
   &__availability {
     font-size: 12px;
     font-weight: normal;
+    color: $darkless-red-color;
     span {
       :first-of-type {
         color: #666;
@@ -54,14 +65,23 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    font-size: 14px;
+    font-size: 12px;
     color: #abaaaa;
-    margin-bottom: 8px;
+    // margin-bottom: 6px;
+  }
+  &__pricer {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   &__price {
-    color: $light-pink-color;
+    color: $darkless-red-color;
     display: flex;
     align-items: center;
+    font-size: 12px;
     h3 {
       font-weight: normal;
       font-size: 16px;
@@ -82,15 +102,16 @@
   }
   &__shipping {
     display: block;
-    color: $light-pink-color;
+    color: #abaaaa;
     font-size: 10px;
-    margin-bottom: 8px;
+    // margin-bottom: 8px;
   }
   &__sizes {
     margin-top: 1rem;
     font-size: 12px;
     h4 {
       font-size: 10px;
+      color: #000;
       // text-align: end;
       // @media (max-width: 460px) {
       //   text-align: start;
@@ -115,15 +136,17 @@
       // font-family: 10px;
       display: grid;
       place-items: center;
-      border: 1px solid $light-pink-color;
+      border: 1px solid $darkless-red-color;
       cursor: pointer;
+      color: $dark-red-color;
       &:hover {
         background-image: linear-gradient(
           to top,
-          $dark-red-color 0%,
-          $orange-red 99%,
-          $light-pink-color 100%
+          $darkless-red-color 0%,
+          $dark-red-color 99%,
+          $darkless-red-color 100%
         );
+        color: #fff;
         border: none;
       }
     }
@@ -144,7 +167,7 @@
       border-radius: 50%;
       overflow: hidden;
       cursor: pointer;
-      outline: 1px solid $light-pink-color;
+      outline: 1px solid $darkless-red-color;
       img {
         width: 100%;
         height: 100%;
@@ -161,6 +184,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #000;
     // justify-content: flex-end;
     // @media (max-width: 460px) {
     //   justify-content: start;
@@ -172,14 +196,14 @@
       display: grid;
       place-items: center;
       cursor: pointer;
-      background: $light-pink-color;
-      color: $dark-red-color;
+      background: $darkless-red-color;
+      color: $light-pink-color;
       box-shadow: $shadow-1;
       &:hover {
-        outline: 1px solid $light-pink-color;
+        outline: 1px solid $darkless-red-color;
         outline-offset: 2px;
         background: none;
-        color: $light-pink-color;
+        color: $darkless-red-color;
       }
       svg {
         transform: scale(0.9);
@@ -202,7 +226,7 @@
       justify-content: center;
       gap: 10px;
       height: 60px;
-      color: #666;
+      color: #222;
       font-weight: 600;
       font-size: 17px;
       cursor: pointer;
@@ -242,7 +266,7 @@
           width: 300px;
         }
         &:hover {
-          background: transparent;
+          background: $dark-red-color;
           border: 1px solid #fff;
           transition: all 0.5s;
           // color: #333;
@@ -256,7 +280,7 @@
     &_grid {
       display: flex;
       justify-content: space-between;
-      color: $light-pink-color;
+      color: $darkless-red-color;
       font-weight: normal;
       span {
         display: flex;
@@ -272,11 +296,11 @@
     .accordian {
       border: none;
       font-weight: 700;
-      color: $light-pink-color;
+      color: $darkless-red-color;
       &__summary {
         background: transparent;
         svg {
-          color: $light-pink-color;
+          color: $darkless-red-color;
         }
       }
     }

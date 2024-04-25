@@ -42,7 +42,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export default function Accordian({ details }) {
+export default function Accordian({ details, brand, code }) {
   const [expanded, setExpanded] = React.useState("");
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -62,6 +62,14 @@ export default function Accordian({ details }) {
           Details
         </AccordionSummary>
         <AccordionDetails className="scrollbar">
+          <div className={styles.infos__brand}>
+            <span>Brand: </span>
+            <span>{brand}</span>
+          </div>
+          <div className={styles.infos__sku}>
+            <span>Product Code: </span>
+            <span>{code}</span>
+          </div>
           {details.slice(1, details.length).map((info, index) => (
             <div key={index} className={styles.infos__accordian_grid}>
               <span>{info.name}:</span>
@@ -89,7 +97,7 @@ export default function Accordian({ details }) {
             >
               <div className="h-30 overflow-y-scroll mb-4 scrollbar-thin h-32 overflow-y-scroll">
                 <div
-                  className="responsive-photo text-[#e6bac8]"
+                  className="responsive-photo text-[#441617]"
                   dangerouslySetInnerHTML={{ __html: details[0] }}
                 ></div>
               </div>

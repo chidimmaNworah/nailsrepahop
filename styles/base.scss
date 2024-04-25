@@ -1,5 +1,6 @@
 // $dark-red-color: #5a141d;
-$dark-red-color: #5a141d;
+$dark-red-color: #441617;
+$darkless-red-color: #5a141d;
 $light-pink-color: #e6bac8;
 $dark-pink-color: #ca4987;
 $dark-purple-color: #704271;
@@ -130,6 +131,7 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: rgba(102, 102, 102, 0.7) !important;
     display: none;
     place-items: center;
+    // position: absolute;
   }
   .swiper-button-prev {
     left: -13px;

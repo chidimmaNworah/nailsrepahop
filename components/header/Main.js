@@ -25,7 +25,7 @@ export default function Main({ searchHandler }) {
       <div className={`${styles.main__container} sticky top-0`}>
         <Link href="/" legacyBehavior>
           <a className={styles.logo}>
-            <img src="/logo.png" alt="" />
+            <img src="/logo1.png" alt="" />
           </a>
         </Link>
         <form onSubmit={(e) => handleSearch(e)} className={styles.search}>

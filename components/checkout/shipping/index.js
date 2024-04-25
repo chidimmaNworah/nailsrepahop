@@ -93,7 +93,8 @@ export default function Shipping({ user, addresses, setAddresses, profile }) {
     setShipping({ ...shipping, [name]: value });
   };
   const saveShippingHandler = async () => {
-    const res = await saveAddress(shipping);
+    const userId = user._id;
+    const res = await saveAddress(shipping, userId);
     setAddresses(res.addresses);
   };
   const changeActiveHandler = async (id) => {

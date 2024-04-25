@@ -165,9 +165,14 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
                       onChange={handleChange}
                     />
                     <CircledIconBtn type="submit" text="Sign in" />
-                    {login_error && (
-                      <span className={styles.error}>{login_error}</span>
-                    )}
+                    <div>
+                      {error && <span className={styles.error}>{error}</span>}
+                    </div>
+                    <div>
+                      {success && (
+                        <span className={styles.success}>{success}</span>
+                      )}
+                    </div>
                     <div className={styles.forgot}>
                       <Link href="/auth/forgot">Forgot Password ?</Link>
                     </div>

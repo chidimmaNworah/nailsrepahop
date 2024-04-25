@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "@/store/cartSlice";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import axios from "axios";
 export default function CartProduct({ product, selected, setSelected }) {
   const { cart } = useSelector((state) => ({ ...state }));
   const [active, setActive] = useState();
@@ -26,11 +27,17 @@ export default function CartProduct({ product, selected, setSelected }) {
     });
     dispatch(updateCart(newCart));
   };
-  const removeProduct = (id) => {
-    let newCart = cart.cartItems.filter((p) => {
-      return p._uid != id;
-    });
-    dispatch(updateCart(newCart));
+  const removeProduct = async (id) => {
+    try {
+      await axios.delete(`/api/user/saveCart`);
+      let newCart = cart.cartItems.filter((p) => {
+        return p._uid != id;
+      });
+      console.log("product deleted successfully");
+      dispatch(updateCart(newCart));
+    } catch (err) {
+      console.log(err);
+    }
   };
   const handleSelect = () => {
     if (active) {

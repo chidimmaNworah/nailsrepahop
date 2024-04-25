@@ -9,6 +9,8 @@ import { useReducer, useEffect } from "react";
 import axios from "axios";
 import StripePayment from "@/components/stripePayment";
 import { getSession } from "next-auth/react";
+import { PaystackButton } from "react-paystack";
+import { toast } from "react-toastify";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -34,6 +36,7 @@ export default function order({
     error: "",
     success: "",
   });
+  console.log({ orderData });
 
   useEffect(() => {
     if (!orderData._id) {
@@ -86,6 +89,28 @@ export default function order({
   function onErroHandler(error) {
     console.log(error);
   }
+  const componentProps = {
+    reference: new Date().getTime().toString(),
+    email: orderData.user.email,
+    amount: orderData.total * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    currency: "NGN",
+    publicKey: process.env.PAYSTACK_PUBLIC_KEY,
+    text: "Proceed To Pay",
+    onSuccess: () => {
+      try {
+        const { data } = axios.put(`/api/order/${orderData._id}/pay`, {
+          orderData,
+        });
+        console.log(data, "paid successfully");
+        window.location.reload(false);
+        toast.success("Order is paid");
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    },
+    onClose: () =>
+      toast.error("We are sorry you have to leave, come back soon!"),
+  };
   return (
     <>
       <Header country={country} />
@@ -256,10 +281,14 @@ export default function order({
                   </div>
                 )}
                 {orderData.paymentMethod == "credit_card" && (
-                  <StripePayment
-                    total={orderData.total}
-                    order_id={orderData._id}
-                    stripe_public_key={stripe_public_key}
+                  // <StripePayment
+                  //   total={orderData.total}
+                  //   order_id={orderData._id}
+                  //   stripe_public_key={stripe_public_key}
+                  // />
+                  <PaystackButton
+                    {...componentProps}
+                    className="bg-[#441617] w-full text-center text-white h-16 rounded"
                   />
                 )}
                 {orderData.paymentMethod == "cash" && (
@@ -275,15 +304,17 @@ export default function order({
 }
 
 export async function getServerSideProps(context) {
-  db.connectDb();
+  await db.connectDb();
   const { query } = context;
   const id = query.id;
+  // console.log(id);
   const order = await Order.findById(id)
     .populate({ path: "user", model: User })
     .lean();
+  // console.log(order);
   let paypal_client_id = process.env.PAYPAL_CLIENT_ID;
   let stripe_public_key = process.env.STRIPE_PUBLIC_KEY;
-  db.disconnectDb();
+  await db.disconnectDb();
   return {
     props: {
       orderData: JSON.parse(JSON.stringify(order)),
