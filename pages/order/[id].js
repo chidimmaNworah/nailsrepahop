@@ -11,6 +11,9 @@ import StripePayment from "@/components/stripePayment";
 import { getSession } from "next-auth/react";
 import { PaystackButton } from "react-paystack";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { emptyCart } from "@/store/cartSlice";
+import { useDispatch } from "react-redux";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -36,8 +39,9 @@ export default function order({
     error: "",
     success: "",
   });
-  console.log({ orderData });
-
+  // console.log({ orderData });
+  const router = useRouter();
+  const ctxDispatch = useDispatch();
   useEffect(() => {
     if (!orderData._id) {
       dispatch({
@@ -81,6 +85,7 @@ export default function order({
           details
         );
         dispatch({ type: "PAY_SUCCESS", payload: data });
+        ctxDispatch(emptyCart());
       } catch (error) {
         dispatch({ type: "PAY_ERROR", payload: error });
       }
@@ -97,17 +102,25 @@ export default function order({
     publicKey: process.env.PAYSTACK_PUBLIC_KEY,
     text: "Proceed To Pay",
     onSuccess: () => {
+      console.log(orderData);
+      const reference = new Date().getTime().toString();
       try {
-        const { data } = axios.put(`/api/order/${orderData._id}/pay`, {
-          orderData,
+        const response = axios.put(`/api/order/${orderData._id}/pay`, {
+          id: reference,
+          status: orderData.status,
+          email: orderData.user.email,
         });
-        console.log(data, "paid successfully");
-        window.location.reload(false);
+        console.log(response.data, "paid successfully");
         toast.success("Order is paid");
-      } catch (err) {
-        toast.error(getError(err));
+        window.location.reload(true);
+        ctxDispatch(emptyCart());
+        router.push("/orders?tab=1&q=paid-orders__paid");
+      } catch (error) {
+        console.error("Error processing payment:", error);
+        toast.error("Failed to process payment");
       }
     },
+
     onClose: () =>
       toast.error("We are sorry you have to leave, come back soon!"),
   };

@@ -18,7 +18,7 @@ $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 $shadow-2: rgba(99, 99, 99, 0.1) 0px 0px 4px 0px;
 $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .container {
-  max-width: 1600px;
+  // max-width: 1600px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 1rem;
@@ -105,12 +105,12 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .flashDeals__swiper,
 .user__swiper {
   .swiper {
-    border-radius: 10px !important;
+    // border-radius: 10px !important;
     overflow: hidden !important;
   }
   .swiper-slide img {
     // height: 300px !important;
-    border-radius: 10px !important;
+    // border-radius: 10px !important;
     box-shadow: $shadow-1 !important;
   }
   .swiper-pagination-bullet {

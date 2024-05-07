@@ -36,41 +36,38 @@
 
 // export default handler;
 
-import nc from "next-connect";
+import { createRouter } from "next-connect";
 import auth from "@/middleware/auth";
 import Order from "@/models/Order";
 import db from "@/utils/db";
-import User from "@/models/user";
 
-const handler = nc().use(auth);
+const router = createRouter().use(auth);
 
-handler.put(async (req, res) => {
+router.put(async (req, res) => {
   try {
     await db.connectDb();
-    const orderId = req.query.id; // Ensure this is the correct way to extract the ID
-    console.log("Order ID:", orderId);
+    console.log(req.body);
+    const { status, email_address, id } = req.body;
+    const order_id = req.query;
 
-    const order = await Order.findById(orderId).populate({
-      path: "user",
-      model: User,
-    });
+    const order = await Order.findById(order_id.id);
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
       order.paymentResult = {
-        id: "12345",
-        status: "processed",
-        email: "mikkylipsy@gmail.com",
+        id,
+        status: "Processing",
+        email: email_address,
       };
-      const newOrder = await order.save();
-      await db.disconnectDb();
-      console.log("Order updated:", newOrder);
-      res.json({ message: "Order is paid.", order: newOrder });
+      order.status = "Processing";
+      await order.save();
+      res.json({
+        success: true,
+      });
     } else {
-      await db.disconnectDb();
-      console.log("Order not found");
-      res.status(404).json({ message: "Order is not found." });
+      res.status(404).json({ message: "Order not found" });
     }
+    await db.disconnectDb();
   } catch (error) {
     console.error("Error processing payment:", error);
     await db.disconnectDb();
@@ -78,4 +75,4 @@ handler.put(async (req, res) => {
   }
 });
 
-export default handler;
+export default router.handler();

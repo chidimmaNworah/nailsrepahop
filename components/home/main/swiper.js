@@ -20,11 +20,12 @@ export default function MainSwiper() {
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
+        effect="fade"
         pagination={{
           clickable: true,
         }}
         autoplay={{
-          delay: 3500,
+          delay: 5500,
           disableOnInteraction: false,
         }}
         navigation={true}

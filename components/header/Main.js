@@ -23,11 +23,19 @@ export default function Main({ searchHandler }) {
   return (
     <div className={`${styles.main} relative`}>
       <div className={`${styles.main__container} sticky top-0`}>
-        <Link href="/" legacyBehavior>
+        {/* <Link href="/" legacyBehavior>
           <a className={styles.logo}>
             <img src="/logo1.png" alt="" />
           </a>
-        </Link>
+        </Link> */}
+        <div className={styles.large_screen}>
+          <Link href="/" className={styles.logo}>
+            <img src="/nails_republic_icon.png" alt="" width={30} />
+            <h1>
+              NAILS <span>REPUBLIK</span>
+            </h1>
+          </Link>
+        </div>
         <form onSubmit={(e) => handleSearch(e)} className={styles.search}>
           <input
             type="text"

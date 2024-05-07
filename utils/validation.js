@@ -62,34 +62,34 @@ export const validateCreateProduct = (product, images) => {
       });
     }
   }
-  for (var i = 0; i < details.length; i++) {
-    if (details[i].name == "" || details[i].value == "") {
-      checks.push({
-        msg: `Please fill all informations on details.`,
-        type: "error",
-      });
-      break;
-    } else {
-      checks.push({
-        msg: `Atleast one detail added.`,
-        type: "success",
-      });
-    }
-  }
-  for (var i = 0; i < questions.length; i++) {
-    if (questions[i].question == "" || details[i].answer == "") {
-      checks.push({
-        msg: `Please fill all informations on questions.`,
-        type: "error",
-      });
-      break;
-    } else {
-      checks.push({
-        msg: `Atleast one question added.`,
-        type: "success",
-      });
-    }
-  }
+  // for (var i = 0; i < details.length; i++) {
+  //   if (details[i].name == "" || details[i].value == "") {
+  //     checks.push({
+  //       msg: `Please fill all informations on details.`,
+  //       type: "error",
+  //     });
+  //     break;
+  //   } else {
+  //     checks.push({
+  //       msg: `Atleast one detail added.`,
+  //       type: "success",
+  //     });
+  //   }
+  // }
+  // for (var i = 0; i < questions.length; i++) {
+  //   if (questions[i].question == "" || details[i].answer == "") {
+  //     checks.push({
+  //       msg: `Please fill all informations on questions.`,
+  //       type: "error",
+  //     });
+  //     break;
+  //   } else {
+  //     checks.push({
+  //       msg: `Atleast one question added.`,
+  //       type: "success",
+  //     });
+  //   }
+  // }
   var s_test = checks.find((c) => c.type == "error");
   if (s_test) {
     return checks;

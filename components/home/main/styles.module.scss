@@ -1,9 +1,9 @@
 .main {
-  display: grid;
+  // display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  max-width: 1000px;
-  margin: 0 auto;
+  // max-width: 1000px;
+  // margin: 0 auto;
   grid-template-areas:
     "menu"
     "swiper"
@@ -152,13 +152,24 @@
   }
   .swiper {
     grid-area: swiper;
-    // height: 300px;
+    width: 100%;
     // background: yellow;
     // background: #fff;
     // border-radius: 10px;
     // box-shadow: $shadow-1;
+    // .swiper-wrapper{
+    //   .swiper-slide{
+    //     img{
+    //       object-fit: contain;
+    //     }
+    //   }
+    // }
+    @media (min-width: 1240px) {
+      height: 60vh;
+    }
   }
   .offers {
+    padding: 0 1rem;
     grid-area: offers;
     overflow: hidden;
     // background: #fff;

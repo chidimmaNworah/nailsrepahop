@@ -41,6 +41,9 @@
     border-radius: 5px;
     box-shadow: $shadow-1;
     padding: 10px 0;
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
     ul {
       li:first-of-type {
         background: #222;
@@ -107,4 +110,12 @@
 .disabled {
   cursor: not-allowed;
   background: #eee;
+}
+.product_order_name {
+  max-width: 10rem;
+  font-size: 0.8rem;
+  p:first-of-type {
+    font-size: 0.5rem;
+    color: #979797;
+  }
 }

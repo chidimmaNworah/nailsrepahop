@@ -15,9 +15,9 @@
   }
   &__item {
     box-shadow: $shadow-1;
-    a_img {
+    &_img {
       width: 230px;
-      height: 280px;
+      height: 260px;
       img {
         width: 100%;
         height: 100%;

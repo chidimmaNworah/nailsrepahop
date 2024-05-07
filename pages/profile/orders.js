@@ -42,11 +42,18 @@ export default function orders({ user, tab, orders }) {
             ))}
           </ul>
         </nav>
-        {orders.map((order) => (
+        {orders.map((order, i) => (
           <div className={styles.orders__table}>
             <ul>
-              <li>Order id</li>
-              <li>{order._id}</li>
+              <li>Name</li>
+              <li>
+                <div className={styles.product_order_name}>
+                  <p>ID: {order._id}</p>
+                  {order.products.map((p) => (
+                    <p>{p.name}</p>
+                  ))}
+                </div>
+              </li>
             </ul>
             <ul>
               <li>Products</li>

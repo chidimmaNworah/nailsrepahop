@@ -52,7 +52,7 @@ export default function Images({
             ],
           })
         );
-        files = files.filter((item) => item !== img.name);
+        // files = files.filter((item) => item !== img.name);
         return;
       } else if (img.size > 1024 * 1024 * 10) {
         dispatch(
@@ -69,11 +69,11 @@ export default function Images({
         return;
       } else {
         const reader = new FileReader();
-        reader.readAsDataURL(img);
         reader.onload = (e) => {
           setImages((images) => [...images, e.target.result]);
         };
-        console.log(reader);
+        reader.readAsDataURL(img);
+        // console.log(reader);
       }
     });
   };

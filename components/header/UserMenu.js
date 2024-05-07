@@ -36,7 +36,7 @@ export default function UserMenu({ session }) {
             <Link href="/profile">Account</Link>
           </li>
           <li>
-            <Link href="/profile/orders">My Orders</Link>
+            <Link href="profile/orders?tab=1&q=all-orders__">My Orders</Link>
           </li>
           <li>
             <Link href="/profile/messages">Message Center</Link>

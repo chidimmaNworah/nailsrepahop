@@ -27,6 +27,14 @@ export default function Top({ country }) {
   return (
     <div className={styles.top}>
       <div className={styles.top__container}>
+        <div className={styles.medium_scrn}>
+          <Link href="/" className={styles.logo}>
+            <img src="/nails_republic_icon.png" alt="" width={30} />
+            <h1>
+              NAILS <span>REPUBLIK</span>
+            </h1>
+          </Link>
+        </div>
         <div></div>
         <ul className={styles.top__list}>
           {country && (

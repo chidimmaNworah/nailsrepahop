@@ -26,7 +26,6 @@ import { uploadImages } from "@/requests/upload";
 import DotLoader from "@/components/loaders/dotLoader";
 import { useRouter } from "next/router";
 import ShippingDetail from "@/components/admin/createProduct/clickToAdd/Shipping";
-import DescriptionImages from "@/components/admin/createProduct/descriptionImages";
 
 const initialState = {
   name: "",
@@ -70,7 +69,6 @@ export default function create({ parents, categories }) {
   const [subs, setSubs] = useState([]);
   const [colorImage, setColorImage] = useState("");
   const [images, setImages] = useState([]);
-  const [description_images, setDescription_images] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -94,7 +92,6 @@ export default function create({ parents, categories }) {
           }
         } catch (error) {
           console.error("Error fetching parent data:", error);
-          // Handle error appropriately
         }
       }
     };
@@ -109,7 +106,6 @@ export default function create({ parents, categories }) {
           category: product.category,
         },
       });
-      // console.log(data);
       setSubs(data);
     }
     getSubs();
@@ -120,10 +116,6 @@ export default function create({ parents, categories }) {
     setProduct({ ...product, [name]: value });
   };
 
-  // const handleChange = (name, value) => {
-  //   setProduct({ ...product, [name]: value });
-  // };
-
   const validate = Yup.object({
     name: Yup.string()
       .required("Please add a name")
@@ -131,24 +123,21 @@ export default function create({ parents, categories }) {
       .max(300, "Product name must bewteen 10 and 300 characters."),
     brand: Yup.string().required("Please add a brand"),
     category: Yup.string().required("Please select a category."),
-    /*
-    subCategories: Yup.array().min(
-      1,
-      "Please select atleast one sub Category."
-    ),
-   */
     sku: Yup.string().required("Please add a sku/number"),
     color: Yup.string().required("Please add a color"),
     description: Yup.string().required("Please add a description"),
   });
+
   const createProduct = async () => {
     let test = validateCreateProduct(product, images);
     if (test == "valid") {
-      createProductHandler();
-      // setLoading(false);
-      // toast.success("uploaded sucessfully");
+      setLoading(true);
+      await createProductHandler();
+      setLoading(false);
+      toast.success("uploaded sucessfully");
       // setProduct({});
     } else {
+      setLoading(false);
       dispatch(
         showDialog({
           header: "Please follow our instructions.",
@@ -157,11 +146,10 @@ export default function create({ parents, categories }) {
       );
     }
   };
-  let uploaded_desc_images = [];
+
   let uploaded_images = [];
   let style_img = "";
   const createProductHandler = async () => {
-    setLoading(true);
     if (images) {
       let temp = images.map((img) => {
         return dataURItoBlob(img);
@@ -183,20 +171,7 @@ export default function create({ parents, categories }) {
       let cloudinary_style_img = await uploadImages(formData);
       style_img = cloudinary_style_img[0].url;
     }
-    if (description_images) {
-      let temp = description_images.map((img) => {
-        return dataURItoBlob(img);
-      });
-      const path = "product images";
-      let formData = new FormData();
-      formData.append("path", path);
-      temp.forEach((image) => {
-        formData.append("file", image);
-      });
-      uploaded_desc_images = await uploadImages(formData);
-    }
     try {
-      // setLoading(true);
       const { data } = await axios.post("/api/admin/product", {
         ...product,
         images: uploaded_images,
@@ -205,13 +180,9 @@ export default function create({ parents, categories }) {
           color: product.color.color,
         },
       });
-      setLoading(false);
       toast.success(data.message);
-      // setProduct({});
-      // router.push("/admin/dashboard/product/all");
       router.push("/admin/dashboard/product/all");
     } catch (error) {
-      setLoading(false);
       toast.error(error);
     }
   };
@@ -363,16 +334,6 @@ export default function create({ parents, categories }) {
               product={product}
               setProduct={setProduct}
             />
-
-            <DescriptionImages
-              name="imageDescInputFile"
-              header="Product Description Images"
-              text="Add images"
-              images={description_images}
-              setImages={setDescription_images}
-              setColorImage={setColorImage}
-            />
-
             <button
               className={`${styles.btn} ${styles.btn__primary} ${styles.submit_btn}`}
               type="submit"

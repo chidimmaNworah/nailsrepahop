@@ -9,17 +9,8 @@ import Footer from "@/components/footer";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Main from "@/components/home/main";
 import FlashDeals from "@/components/home/flashDeals";
-// import Category from "@/components/home/category";
 import Category from "../models/Category";
-import {
-  gamingSwiper,
-  homeImprovSwiper,
-  women_accessories,
-  women_dresses,
-  women_shoes,
-  women_swiper,
-} from "@/data/home";
-import { useMediaQuery } from "react-responsive";
+import { FaArrowRight } from "react-icons/fa";
 import ProductsSwiper from "@/components/productsSwiper";
 import db from "@/utils/db";
 import Product from "@/models/Product";
@@ -28,11 +19,11 @@ import NailArt from "@/components/home/category/NailsAndAccessories";
 import ToolsAndEquipments from "@/components/home/category/ToolsAndEquipments";
 import ForEntreprenuers from "@/components/productsSwiper/ForEntreprenuers";
 import ForCreators from "@/components/productsSwiper/ForCreators";
+import Link from "next/link";
 
 export default function Home({ country, products, productsByCategory }) {
   // console.log("products", products);
   const { data: session } = useSession();
-  const isMedium = useMediaQuery({ query: "(max-width:850px)" });
 
   return (
     <div>
@@ -88,42 +79,81 @@ export default function Home({ country, products, productsByCategory }) {
         <meta name="twitter:creator" content="@kimmoramicky" />
       </Head>
       <Header country={country} />
+      {/* <div className={styles.hero_image}>
+        <img src="/herobanner.png" alt="hero-image" />
+        <div>
+          <ul>
+            <li>Handcrafted</li>{" "}
+            <li>
+              flavour is <span>always</span>
+            </li>
+            <li>incredible</li>
+          </ul>
+        </div>
+      </div> */}
+      <Main products={products} />
       <div className={styles.home}>
         <div className={styles.container}>
-          <Main products={products} />
-          <FlashDeals products={products} />
+          {/* <FlashDeals products={products} /> */}
           <div className={styles.home__category}>
-            {/* <motion.div
-              whileInView={{ x: [-100, -50, 0], opacity: [0, 0, 1] }}
-              transition={{ duration: 1 }}
-            > */}
-            <NailArt
-              header="Nail & Accessories"
-              products={products}
-              background="#c9454b"
-            />
-            {/* nail art, fashion and accessories */}
-            {/* </motion.div> */}
-            {/* {!isMedium && ( */}
-            {/* <motion.div
-              whileInView={{ x: [100, 50, 0], opacity: [0, 0, 1] }}
-              transition={{ duration: 1 }}
-            > */}
+            <div className={styles.tools__left}>
+              <span>FAST DELIVERY</span>
+              <h1>Healthy nails cannot be rushed</h1>
+              <p>
+                But having the right tools and equipment can make the journey
+                easier.
+              </p>{" "}
+              <p>
+                Shop our selection of high-quality nail care tools and equipment
+                to support your nail care routine. From files and buffers to
+                cuticle care essentials, we've got everything you need to
+                nurture strong, beautiful nails at your own pace.
+              </p>
+              <Link href="/browse?category=62c46ff0062128444ad59193">
+                <button className="flex align-center">
+                  SHOP <FaArrowRight />
+                </button>
+              </Link>
+            </div>
+
             <ToolsAndEquipments
               header="Tools & Equipments"
               products={products}
               background="#c9454b"
             />
-            {/* combo and tools */}
-            {/* </motion.div> */}
-            {/* )} */}
-            {/* <Category
-              header="Health & Treatment"
-              products={women_dresses}
-              background="#704271"
-            /> */}
           </div>
-          <motion.div
+          <div className={styles.home__category}>
+            <NailArt
+              header="Nail & Accessories"
+              products={products}
+              background="#e6bac8"
+            />
+            <div className={styles.tools__left}>
+              <span>FAST DELIVERY</span>
+              <h1>Healthy nails cannot be rushed</h1>
+              <p>
+                But having the right tools and equipment can make the journey
+                easier.
+              </p>{" "}
+              <p>
+                Shop our selection of high-quality nail care tools and equipment
+                to support your nail care routine. From files and buffers to
+                cuticle care essentials, we've got everything you need to
+                nurture strong, beautiful nails at your own pace.
+              </p>
+              <Link
+                href="/browse?category=62c46ff0062128444ad59193"
+                className={styles.seccondbtn}
+              >
+                <button className="flex align-center">
+                  SHOP <FaArrowRight />
+                </button>
+              </Link>
+            </div>
+
+            <div></div>
+          </div>
+          {/* <motion.div
             whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
             transition={{ duration: 0.5 }}
           >
@@ -132,24 +162,12 @@ export default function Home({ country, products, productsByCategory }) {
               header="For Entreprenuers & Creators"
               bg="#5a141d"
             />
-            {/* Fasion and accessories */}
-            {/* <ForCreators
-            products={products}
-            headers="Unique & Stylish"
-            bg="#ca4987"
-          /> */}
-            {/* <motion.div
-            whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
-            transition={{ duration: 0.5 }}
-          > */}
             <ForCreators
               products={products}
               header="Unique & Stylish"
               bg="#c9454b"
             />{" "}
-            {/* treatment and nail art */}
-          </motion.div>
-          {/* </motion.div> */}
+          </motion.div> */}
           <div className={styles.products}>
             {products?.map((product) => (
               <ProductCard product={product} key={product._id} />
